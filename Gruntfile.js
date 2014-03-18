@@ -183,7 +183,8 @@ module.exports = function (grunt) {
             dist: {
                 // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
                 options: {
-                    baseUrl: '<%= yeoman.app %>/scripts',
+                    // `name` and `out` is set by grunt-usemin
+                    baseUrl: '.tmp/scripts',
                     optimize: 'none',
                     paths: {
                         'templates': '../../.tmp/scripts/templates',
