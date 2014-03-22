@@ -1,4 +1,4 @@
-/*global jangleFit, Backbone, JST*/
+/*global jangleFit, Backbone, Handlebars*/
 
 jangleFit.Views = jangleFit.Views || {};
 
@@ -11,7 +11,7 @@ jangleFit.Views = jangleFit.Views || {};
 
         className: 'rung',
 
-        template: JST['app/scripts/templates/rung.ejs'],
+        template: JST['app/scripts/templates/rung.hbs'],
 
         initialize: function () {
             this.listenTo(this.model, 'change', this.render);

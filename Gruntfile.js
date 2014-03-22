@@ -11,7 +11,7 @@ var mountFolder = function (connect, dir) {
 // 'test/spec/{,*/}*.js'
 // use this if you want to match all subfolders:
 // 'test/spec/**/*.js'
-// templateFramework: 'lodash'
+// templateFramework: 'handlebars'
 
 module.exports = function (grunt) {
     // show elapsed time at the end
@@ -53,15 +53,15 @@ module.exports = function (grunt) {
                     '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
                     '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
-                    '<%= yeoman.app %>/scripts/templates/*.{ejs,mustache,hbs}',
+                    '<%= yeoman.app %>/scripts/templates/*.{mustache,hbs}',
                     'test/spec/**/*.js'
                 ]
             },
-            jst: {
+            handlebars: {
                 files: [
-                    '<%= yeoman.app %>/scripts/templates/*.ejs'
+                    '<%= yeoman.app %>/scripts/templates/*.hbs'
                 ],
-                tasks: ['jst']
+                tasks: ['handlebars']
             },
             test: {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.js', 'test/spec/**/*.js'],
@@ -256,10 +256,13 @@ module.exports = function (grunt) {
                 }]
             }
         },
-        jst: {
+        handlebars: {
             compile: {
+                options: {
+                    namespace: 'JST'
+                },
                 files: {
-                    '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/*.ejs']
+                    '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/*.hbs']
                 }
             }
         },
@@ -297,7 +300,7 @@ module.exports = function (grunt) {
                 'clean:server',
                 'coffee',
                 'createDefaultTemplate',
-                'jst',
+                'handlebars',
                 'compass:server',
                 'connect:test',
                 'open:test',
@@ -309,7 +312,7 @@ module.exports = function (grunt) {
             'clean:server',
             'coffee:dist',
             'createDefaultTemplate',
-            'jst',
+            'handlebars',
             'compass:server',
             'connect:livereload',
             'open:server',
@@ -323,7 +326,7 @@ module.exports = function (grunt) {
                 'clean:server',
                 'coffee',
                 'createDefaultTemplate',
-                'jst',
+                'handlebars',
                 'compass',
                 'connect:test',
                 'mocha',
@@ -343,7 +346,7 @@ module.exports = function (grunt) {
         'clean:dist',
         'coffee',
         'createDefaultTemplate',
-        'jst',
+        'handlebars',
         'compass:dist',
         'useminPrepare',
         'imagemin',

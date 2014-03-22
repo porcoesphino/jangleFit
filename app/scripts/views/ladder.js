@@ -1,4 +1,4 @@
-/*global jangleFit, Backbone, JST*/
+/*global jangleFit, Backbone, Handlebars*/
 
 jangleFit.Views = jangleFit.Views || {};
 
@@ -9,7 +9,7 @@ jangleFit.Views = jangleFit.Views || {};
 
         el: '#jangleFit-app',
 
-        template: JST['app/scripts/templates/ladder.ejs'],
+        template: JST['app/scripts/templates/ladder.hbs'],
 
         initialize: function () {
             this.render();
