@@ -8,7 +8,9 @@ window.jangleFit = {
     Routers: {},
     init: function () {
         'use strict';
-        console.log('Hello from Backbone!');
+        new this.Views.LadderView({
+            collection: new this.Collections.LadderCollection()
+        });
     }
 };
 
