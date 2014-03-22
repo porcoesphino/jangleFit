@@ -259,7 +259,7 @@ module.exports = function (grunt) {
         handlebars: {
             compile: {
                 options: {
-                    namespace: 'JST'
+                    namespace: 'jangleFit.Templates'
                 },
                 files: {
                     '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/*.hbs']
@@ -282,7 +282,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('createDefaultTemplate', function () {
-        grunt.file.write('.tmp/scripts/templates.js', 'this.JST = this.JST || {};');
+        grunt.file.write('.tmp/scripts/templates.js', 'this.jangleFit = this.jangleFit || {};');
     });
 
     grunt.registerTask('server', function (target) {
