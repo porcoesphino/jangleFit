@@ -120,3 +120,9 @@ div.header > h3, .navbar-header > .navbar-brand {
 div.footer {
   margin-top: 15px;
 }
+
+/* Bug fixes */
+/* On deploy, hero-unit was getting a width of 300 from somewhere */
+div.hero-unit {
+  width: inherit;
+}
