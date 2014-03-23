@@ -25,6 +25,16 @@ $(document).ready(function () {
             $(this).parent().addClass('active');
         }
     });
+    // A continued hack for when we load from URL
+    // TODO: somehow load view from route
+    var hash = window.location.hash;
+    var els = $('ul.nav a[href="'+ hash +'"]');
+    if (els.length > 0) {
+        els.parent().addClass('active');
+    } else {
+    // 404's??
+        $('#home').addClass('active');
+    }
 
     jangleFit.init();
 });
