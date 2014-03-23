@@ -103,10 +103,6 @@ div.header {
   border-bottom: 1px solid #E7E7E7;
 }
 
-div.navbar-collapse.in {
-//  border-bottom: 1px solid;
-}
-
 .navbar > .container .navbar-brand {
   margin-left: 0px;
 }
@@ -115,6 +111,22 @@ div.header > h3, .navbar-header > .navbar-brand {
   font-family: Marvel;
   color: #ADFF2F;
   margin-left: 0px;
+}
+
+// Change the color and the coloring and radius of the active navbar item
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus,
+ {
+  background-color: #D6F6C0;
+  border-radius: 5px;
+}
+
+// An issue with the background for open menu items
+div.navbar-collapse.collapse > ul > li.dropdown.open > a,
+div.navbar-collapse.collapse > ul > li.dropdown.open > ul > li > a:hover {
+  background-color: #D6F6C0;
+  border-radius: 5px;
 }
 
 .footer > .container {
