@@ -117,12 +117,27 @@ div.header > h3, .navbar-header > .navbar-brand {
   margin-left: 0px;
 }
 
-div.footer {
-  margin-top: 15px;
+.footer > .container {
+  padding-top: 15px;
+  border-top: 1px solid #E5E5E5;
+}
+
+.footer {
+  border: 0px;
 }
 
 /* Bug fixes */
 /* On deploy, hero-unit was getting a width of 300 from somewhere */
 div.hero-unit {
-  width: inherit;
+  width: initial;
+  margin-top: 0px;
 }
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+body {
+  background-color: #FFF;
+}
+
