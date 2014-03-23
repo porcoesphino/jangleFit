@@ -6,6 +6,7 @@ var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
 
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -26,6 +27,8 @@ module.exports = function (grunt) {
     };
 
     grunt.initConfig({
+
+
         yeoman: yeomanConfig,
         watch: {
             options: {
@@ -278,7 +281,39 @@ module.exports = function (grunt) {
                     ]
                 }
             }
+        },
+
+
+        buildcontrol: {
+            options: {
+                dir: 'dist',
+                commit: true,
+                push: true,
+                message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+            },
+            pages: {
+                options: {
+                    remote: 'git@github.com:porcoesphino/jangleFit.git',
+                    branch: 'gh-pages'
+                }
+            },
+            heroku: {
+                options: {
+//        var pkg = require('./package.json');
+//                    remote: 'git@heroku.com:example-heroku-webapp-1988.git',
+//                    branch: 'master',
+//                    tag: pkg.version
+                }
+            },
+            local: {
+                options: {
+                    remote: '../',
+                    branch: 'build'
+                }
+            }
         }
+
+
     });
 
     grunt.registerTask('createDefaultTemplate', function () {
@@ -357,6 +392,10 @@ module.exports = function (grunt) {
         'copy',
         'rev',
         'usemin'
+    ]);
+
+    grunt.registerTask('pages', [
+        'buildcontrol:pages'
     ]);
 
     grunt.registerTask('default', [
