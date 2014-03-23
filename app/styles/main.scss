@@ -93,7 +93,30 @@ body {
 div.header {
 }
 
-div.header > h3 {
+.navbar-default {
+  background-color: #FFFFFF;
+  border-radius: 0;
+  border: 0px;
+}
+
+.navbar-default > div.container {
+  border-bottom: 1px solid #E7E7E7;
+}
+
+div.navbar-collapse.in {
+//  border-bottom: 1px solid;
+}
+
+.navbar > .container .navbar-brand {
+  margin-left: 0px;
+}
+
+div.header > h3, .navbar-header > .navbar-brand {
   font-family: Marvel;
   color: #ADFF2F;
+  margin-left: 0px;
+}
+
+div.footer {
+  margin-top: 15px;
 }
