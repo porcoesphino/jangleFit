@@ -128,8 +128,13 @@ div.header > h3, .navbar-header > .navbar-brand {
 }
 
 // An issue with the background for open menu items
-div.navbar-collapse.collapse > ul > li.dropdown.open > a,
-div.navbar-collapse.collapse > ul > li.dropdown.open > ul > li > a:hover {
+div.navbar-collapse.collapse > ul > li.dropdown.open > a {
+  background-color: inherit;
+}
+
+// An issue with the background for open menu items that are hovered on
+div.navbar-collapse.collapse > ul > li.dropdown.open > ul > li > a:hover,
+div.navbar-collapse.collapse > ul > li.dropdown.open > ul > li.active > a {
   background-color: #D6F6C0;
   border-radius: 5px;
 }
@@ -146,5 +151,4 @@ div.navbar-collapse.collapse > ul > li.dropdown.open > ul > li > a:hover {
 div.navbar {
   margin-bottom: 0px;
 }
-
 
