@@ -11,13 +11,14 @@ jangleFit.Routers = jangleFit.Routers || {};
         },
 
         routes: {
-            'home' : 'home',
+            '': 'chart4',
             'about' : 'about',
             'contact' : 'contact',
-            '*notFound' : 'home'
+            'chart4' : 'chart4',
+            '*notFound' : 'about'
         },
 
-        home: function() {
+        chart4: function() {
             new jangleFit.Views.LadderView({
                 collection: new jangleFit.Collections.LadderCollection()
             });
