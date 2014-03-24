@@ -138,18 +138,8 @@ div.navbar-collapse.collapse > ul > li.dropdown.open > ul > li > a:hover {
   border: 0px;
 }
 
-/* Bug fixes */
-/* On deploy, hero-unit was getting a width of 300 from somewhere */
-div.hero-unit {
-  width: initial;
-  margin-top: 0px;
-}
-
-.navbar {
+div.navbar {
   margin-bottom: 0px;
 }
 
-body {
-  background-color: #FFF;
-}
 
