@@ -16,8 +16,8 @@ $(document).ready(function () {
     'use strict';
 
     // And now a hack for disabled links
-    $('li.disabled > a:link').on('click', function(e) { 
-        e.preventDefault(); 
+    $('li.disabled > a:link').on('click', function(e) {
+        e.preventDefault();
     });
     // A horrible hack for the fact these are local clicks
     // TODO: handle refreshes
