@@ -7,7 +7,7 @@ jangleFit.Collections = jangleFit.Collections || {};
 
     jangleFit.Collections.LadderCollection = Backbone.Collection.extend({
 
-        localStorage: new Backbone.LocalStorage('backbone-janglefit'),
+        localStorage: new Backbone.LocalStorage('janglefit-backbone-ladders'),
 
         initialize: function () {
             this.model = jangleFit.Models.RungModel;

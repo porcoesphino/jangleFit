@@ -11,11 +11,15 @@ jangleFit.Routers = jangleFit.Routers || {};
         },
 
         routes: {
-            '': 'chart4',
+            '': 'initial',
             'about' : 'about',
             'contact' : 'contact',
             'chart4' : 'chart4',
-            '*notFound' : 'about'
+            '*notFound' : 'initial'
+        },
+
+        initial: function() {
+            new jangleFit.Views.InitialView();
         },
 
         chart4: function() {
