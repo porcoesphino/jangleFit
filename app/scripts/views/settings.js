@@ -33,7 +33,7 @@ jangleFit.Views = jangleFit.Views || {};
 
         selectChanged: function(e){
             var field = $(e.currentTarget);
-            var value = $("option:selected", field).val();
+            var value = $('option:selected', field).val();
             var data = {};
             data[field.attr('id')] = value;
             jangleFit.currentUser.set(data);
