@@ -11,6 +11,15 @@ jangleFit.Models = jangleFit.Models || {};
 
         localStorage: new Backbone.LocalStorage('janglefit-backbone-user-data'),
 
+        initialize: function() {
+            this.on('change', this.localSave, this);
+        },
+
+        // TODO: remove this hideousness
+        localSave: function() {
+            this.save();
+        },
+
         isInitialised: function() {
             return this.get('givenName') && this.get('familyName');
         }

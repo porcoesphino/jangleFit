@@ -1,7 +1,7 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 @import url(http://fonts.googleapis.com/css?family=Marvel);
-@import url(http://fonts.googleapis.com/css?family=Roboto:300);
+@import url(http://fonts.googleapis.com/css?family=Roboto:300,700,400italic,700italic);
 
 $font-family-sans-serif:  "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
@@ -179,4 +179,9 @@ kbd {
 // TODO: blockquote-reverse broken
 blockquote.blockquote-reverse {
   text-align: right;
+}
+
+// TODO: input group buttons broken
+span.input-group-btn > button {
+  height: 34px;
 }

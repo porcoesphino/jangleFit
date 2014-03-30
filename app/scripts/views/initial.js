@@ -17,17 +17,11 @@ jangleFit.Views = jangleFit.Views || {};
         },
 
         initialize: function () {
-            var temp = new jangleFit.Models.User();
-            temp.fetch();
-            if (temp.isInitialised()) {
-                jangleFit.currentUser = temp;
-            }
-
             this.render();
         },
 
         render: function () {
-            if (jangleFit.currentUser) {
+            if (jangleFit.currentUser && jangleFit.currentUser.isInitialised()) {
                 this.$el.html(this.templateOldUser(jangleFit.currentUser.toJSON()));
             } else {
                 this.$el.html(this.templateNewUser());

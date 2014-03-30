@@ -13,7 +13,7 @@ jangleFit.Routers = jangleFit.Routers || {};
         routes: {
             '': 'initial',
             'about' : 'about',
-            'contact' : 'contact',
+            'settings' : 'settings',
             'chart4' : 'chart4',
             '*notFound' : 'initial'
         },
@@ -33,9 +33,8 @@ jangleFit.Routers = jangleFit.Routers || {};
             window.$('#jangleFit-app').html(html);
         },
 
-        contact: function() {
-            var template = jangleFit.Templates['app/scripts/templates/contact.hbs'];
-            window.$('#jangleFit-app').html(template);
+        settings: function() {
+            new jangleFit.Views.SettingsView();
         }
     });
 

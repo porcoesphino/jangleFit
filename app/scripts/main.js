@@ -8,6 +8,12 @@ window.jangleFit = {
     Routers: {},
     init: function () {
         'use strict';
+
+        var temp = new jangleFit.Models.User();
+        temp.fetch();
+        if (temp.isInitialised()) {
+            jangleFit.currentUser = temp;
+        }
         new this.Routers.JanglefitRouter();
     }
 };
