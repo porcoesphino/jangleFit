@@ -21,7 +21,7 @@ jangleFit.Views = jangleFit.Views || {};
         },
 
         render: function () {
-            this.$el.html(this.template());
+            this.$el.html(this.template(jangleFit.currentUser.attributes));
 
             return this;
         },

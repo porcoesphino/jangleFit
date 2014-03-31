@@ -22,7 +22,7 @@ jangleFit.Views = jangleFit.Views || {};
 
         render: function () {
             if (jangleFit.currentUser && jangleFit.currentUser.isInitialised()) {
-                this.$el.html(this.templateOldUser(jangleFit.currentUser.toJSON()));
+                this.$el.html(this.templateOldUser(jangleFit.currentUser.attributes));
             } else {
                 this.$el.html(this.templateNewUser());
             }
@@ -31,8 +31,8 @@ jangleFit.Views = jangleFit.Views || {};
 
         createUser: function(event) {
             event.preventDefault();
-            var givenName = this.$('#given').val().trim();
-            var familyName = this.$('#family').val().trim();
+            var givenName = this.$('#givenName').val().trim();
+            var familyName = this.$('#familyName').val().trim();
             if (givenName && familyName) {
                 jangleFit.currentUser = new jangleFit.Models.User({
                     givenName: givenName,
