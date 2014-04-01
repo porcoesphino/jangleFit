@@ -27,6 +27,10 @@ jangleFit.Routers = jangleFit.Routers || {};
             $('nav').find('.active').removeClass('active');
 
             var hash = window.location.hash;
+            if (!hash) {
+                $('#home').addClass('active');
+                return;
+            }
             var els = $('ul.nav a[href="'+ hash +'"]');
             if (els.length > 0) {
                 els.parent().addClass('active');
@@ -37,32 +41,55 @@ jangleFit.Routers = jangleFit.Routers || {};
             }
         },
 
-        initial: function() {
-            new jangleFit.Views.InitialView();
+
+
+        goWithMenuUpdate: function(el) {
+            $('#jangleFit-app').html(el);
             this.selectMenu();
         },
 
         chart4: function() {
-            new jangleFit.Views.LadderView({
+            var userHTML = '';
+            if (jangleFit.currentUser && jangleFit.currentUser.isInitialised()) {
+                userHTML = new jangleFit.Views.UserCurrentView({model: jangleFit    .currentUser}).render().el.innerHTML;
+            }
+            var ladderHTML = new jangleFit.Views.LadderView({
                 collection: new jangleFit.Collections.LadderCollection()
-            });
-            this.selectMenu();
+            }).render().el;
+            this.goWithMenuUpdate(userHTML + ladderHTML.innerHTML);
         },
 
         about: function() {
-            var html = jangleFit.Templates['app/scripts/templates/about.hbs']();
-            window.$('#jangleFit-app').html(html);
-            this.selectMenu();
+            this.goWithMenuUpdate(jangleFit.Templates['app/scripts/templates/about.hbs']());
+        },
+
+        updateIfAuth: function(elCreateFunc) {
+            var el;
+            if (!jangleFit.currentUser || !jangleFit.currentUser.isInitialised()) {
+                el = new jangleFit.Views.UserNewView().render().el;
+                this.navigate('');
+            } else {
+                el = elCreateFunc();
+            }
+            this.goWithMenuUpdate(el);
+        },
+
+
+
+        initial: function() {
+            this.updateIfAuth( function() {
+                var summaryHTML = new jangleFit.Views.UserCurrentView({model: jangleFit.currentUser}).render().el;
+                var ladderHTML = new jangleFit.Views.LadderView({
+                    collection: new jangleFit.Collections.LadderCollection()
+                }).render().el;
+                return summaryHTML.innerHTML + ladderHTML.innerHTML;
+            });
         },
 
         settings: function() {
-            if (jangleFit.currentUser && jangleFit.currentUser.isInitialised()) {
-                new jangleFit.Views.SettingsView();
-            } else {
-                window.location.hash = 'home';
-            }
-            this.selectMenu();
+            this.updateIfAuth( function() {
+                return new jangleFit.Views.SettingsView().render().el;
+            });
         }
     });
-
 })();

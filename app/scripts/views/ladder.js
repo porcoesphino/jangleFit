@@ -7,8 +7,6 @@ jangleFit.Views = jangleFit.Views || {};
 
     jangleFit.Views.LadderView = Backbone.View.extend({
 
-        el: '#jangleFit-app',
-
         template: jangleFit.Templates['app/scripts/templates/ladder.hbs'],
 
         initialize: function () {
@@ -21,14 +19,14 @@ jangleFit.Views = jangleFit.Views || {};
         },
 
         render: function () {
-            this.$el.html(this.template(jangleFit.currentUser.attributes));
-
+            this.$el.html(this.template());
+            this.addRungs();
             return this;
         },
 
         addRung: function (rung) {
             var view = new jangleFit.Views.RungView({ model: rung});
-            this.$('tbody').append(view.render().el);
+            this.$el.find('tbody').append(view.render().el);
         },
 
         addRungs: function () {

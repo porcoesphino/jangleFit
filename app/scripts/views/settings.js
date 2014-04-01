@@ -7,8 +7,6 @@ jangleFit.Views = jangleFit.Views || {};
 
     jangleFit.Views.SettingsView = Backbone.View.extend({
 
-        el: '#jangleFit-app',
-
         template: jangleFit.Templates['app/scripts/templates/settings.hbs'],
 
         events: {
@@ -20,33 +18,27 @@ jangleFit.Views = jangleFit.Views || {};
         initialize: function () {
             this.listenTo(jangleFit.currentUser, 'change', this.render);
             this.render();
-            this.setLevel();
         },
 
         // TODO: Horrible hack
         setLevel: function() {
             var level = jangleFit.currentUser.get('level');
             if (level) {
-                var option = $('option:contains("'+level+'")');
-                if (option.length === 1) {
-                    option = option[0];
-                } else {
+                var option = this.$el.find('option:contains("'+level+'")');
+                if (option.length !== 1) {
                     option = option.filter(
                         function(o, b) {
                             return b.innerText===level;
                         }
-                    )[0];
+                    );
                 }
-                option.selected = true;
+                option.attr('selected', true);
             }
         },
 
         render: function () {
-            if (jangleFit.currentUser && jangleFit.currentUser.isInitialised()) {
-                this.$el.html(this.template(jangleFit.currentUser.toJSON()));
-            } else {
-                new jangleFit.Views.InitialView();
-            }
+            this.$el.html(this.template(jangleFit.currentUser.toJSON()));
+            this.setLevel();
             return this;
         },
 

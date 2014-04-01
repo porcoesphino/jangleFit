@@ -14,7 +14,7 @@ window.jangleFit = {
         if (temp.isInitialised()) {
             jangleFit.currentUser = temp;
         }
-        new this.Routers.JanglefitRouter();
+        jangleFit.router = new this.Routers.JanglefitRouter();
     }
 };
 
