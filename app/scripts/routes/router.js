@@ -13,8 +13,9 @@ jangleFit.Routers = jangleFit.Routers || {};
         routes: {
             // TODO: clean these up
             '': 'initial',
-            '(/)about(/)' : 'about',
             '(/)settings(/)' : 'settings',
+            '(/)log(/)' : 'log',
+            '(/)about(/)' : 'about',
             '(/)chart4(/)' : 'chart4',
             '*notFound' : 'initial'
         },
@@ -89,6 +90,12 @@ jangleFit.Routers = jangleFit.Routers || {};
         settings: function() {
             this.updateIfAuth( function() {
                 return new jangleFit.Views.SettingsView().render().el;
+            });
+        },
+
+        log: function() {
+            this.updateIfAuth( function() {
+                return new jangleFit.Views.LogView().render().el;
             });
         }
     });
