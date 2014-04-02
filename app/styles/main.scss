@@ -187,3 +187,8 @@ blockquote.blockquote-reverse {
 span.input-group-btn > button {
   height: 34px;
 }
+
+// Override bootstrap on aligning labels to the right on large screens
+.form-horizontal .control-label {
+  text-align: left;
+}

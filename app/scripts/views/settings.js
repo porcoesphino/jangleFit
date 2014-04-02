@@ -7,6 +7,12 @@ jangleFit.Views = jangleFit.Views || {};
 
     jangleFit.Views.SettingsView = Backbone.View.extend({
 
+        tagName: 'form',
+
+        className: 'form-horizontal center-block',
+
+        attributes: {'role': 'form'},
+
         template: jangleFit.Templates['app/scripts/templates/settings.hbs'],
 
         events: {
