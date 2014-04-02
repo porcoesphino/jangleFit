@@ -13,12 +13,9 @@ jangleFit.Routers = jangleFit.Routers || {};
         routes: {
             // TODO: clean these up
             '': 'initial',
-            'about' : 'about',
-            '/about' : 'about',
-            'settings' : 'settings',
-            '/settings' : 'settings',
-            'chart4' : 'chart4',
-            '/chart4' : 'chart4',
+            '(/)about(/)' : 'about',
+            '(/)settings(/)' : 'settings',
+            '(/)chart4(/)' : 'chart4',
             '*notFound' : 'initial'
         },
 
