@@ -44,7 +44,10 @@ jangleFit.Routers = jangleFit.Routers || {};
 
 
         goWithMenuUpdate: function(el) {
-            $('#jangleFit-app').html(el);
+            if (!this.mainEl) {
+                this.mainEl = $('#jangleFit-app');
+            }
+            this.mainEl.html(el);
             this.selectMenu();
         },
 
