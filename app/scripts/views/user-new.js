@@ -7,6 +7,12 @@ jangleFit.Views = jangleFit.Views || {};
 
     jangleFit.Views.UserNewView = Backbone.View.extend({
 
+        tagName: 'form',
+
+        className: 'form-login center-block',
+
+        attributes: {'role': 'form'},
+
         template: jangleFit.Templates['app/scripts/templates/user-new.hbs'],
 
         events: {
