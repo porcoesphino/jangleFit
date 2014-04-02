@@ -9,6 +9,8 @@ jangleFit.Models = jangleFit.Models || {};
 
         id: 'current-user',
 
+        defaults: {level: 'D-'},
+
         localStorage: new Backbone.LocalStorage('janglefit-backbone-user-data'),
 
         initialize: function() {

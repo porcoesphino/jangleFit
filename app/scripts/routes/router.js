@@ -80,9 +80,12 @@ jangleFit.Routers = jangleFit.Routers || {};
         initial: function() {
             this.updateIfAuth( function() {
                 var summaryHTML = new jangleFit.Views.UserCurrentView({model: jangleFit.currentUser}).render().el;
-                var ladderHTML = new jangleFit.Views.LadderView({
-                    collection: new jangleFit.Collections.LadderCollection()
+                var ladder = new jangleFit.Collections.LadderCollection();
+                ladder.fetch();
+                var ladderHTML = new jangleFit.Views.ProgressView({
+                    model: ladder.get(jangleFit.currentUser.get('level'))
                 }).render().el;
+
                 return summaryHTML.innerHTML + ladderHTML.innerHTML;
             });
         },

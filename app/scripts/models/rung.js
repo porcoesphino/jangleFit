@@ -7,6 +7,10 @@ jangleFit.Models = jangleFit.Models || {};
 
     jangleFit.Models.RungModel = Backbone.Model.extend({
 
+        initialize: function() {
+            this.set('id', this.get('level'));
+        }
+
     });
 
 })();
