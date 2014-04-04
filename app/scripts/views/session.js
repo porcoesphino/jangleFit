@@ -1,4 +1,4 @@
-/*global jangleFit, Backbone, JST*/
+/*global jangleFit, Backbone*/
 
 jangleFit.Views = jangleFit.Views || {};
 
@@ -22,7 +22,7 @@ jangleFit.Views = jangleFit.Views || {};
 
         close: function() {
 // TODO: remove
-console.debug('Killing timer');
+            console.debug('Killing timer');
             window.clearInterval(this.counter);
             jangleFit.router.off('route', this.onRoute);
         },
@@ -34,7 +34,7 @@ console.debug('Killing timer');
         },
 
         countDown: function() {
-console.debug('working');
+            console.debug('working');
             if (!isNaN(this.count)) {
                 this.count = this.count - 1;
                 this.updateCounter();
@@ -69,7 +69,7 @@ console.debug('working');
                 this.updatePanel();
             } else {
                 this.close();
-                $('#jangleFit-app').find('.jumbotron').html('<h2 class="form-signin-heading text-center">Congratulations!!</h2>')
+                $('#jangleFit-app').find('.jumbotron').html('<h2 class="form-signin-heading text-center">Congratulations!!</h2>');
             }
         }
 

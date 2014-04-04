@@ -8,7 +8,7 @@ jangleFit.Views = jangleFit.Views || {};
     jangleFit.Views.MainView = Backbone.View.extend({
 
         initialize: function () {
-            this.userView = new jangleFit.Views.UserCurrentView({model: this.model})
+            this.userView = new jangleFit.Views.UserCurrentView({model: this.model});
             this.rung = this.getCurrentRung(this.model);
             this.progressView = new jangleFit.Views.ProgressView({
                 model: this.rung
