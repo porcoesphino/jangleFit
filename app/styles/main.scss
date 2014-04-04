@@ -192,3 +192,14 @@ span.input-group-btn > button {
 .form-horizontal .control-label {
   text-align: left;
 }
+
+// Forms in jumbotrons
+.jumbotron input, .jumbotron button {
+  height: 60px;
+  font-size: 3ex;
+}
+
+// Jumbotron coloring
+.jumbotron {
+  background-color: #B1E9D2;
+}

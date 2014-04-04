@@ -1,6 +1,5 @@
 /*global jangleFit, $*/
 
-
 window.jangleFit = {
     Models: {},
     Collections: {},
@@ -14,6 +13,7 @@ window.jangleFit = {
         if (temp.isInitialised()) {
             jangleFit.currentUser = temp;
         }
+
         jangleFit.router = new this.Routers.JanglefitRouter();
     }
 };

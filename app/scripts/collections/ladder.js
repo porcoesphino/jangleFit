@@ -30,13 +30,13 @@ jangleFit.Collections = jangleFit.Collections || {};
                          ].map( function(item) {
                 return {
                     level: item[0],
-                    ex1: item[1],
-                    ex2: item[2],
-                    ex3: item[3],
-                    ex4: item[4],
-                    ex5: item[5],
-                    ex6: item[6],
-                    ex7: item[7]
+                    ex0: item[1],
+                    ex1: item[2],
+                    ex2: item[3],
+                    ex3: item[4],
+                    ex4: item[5],
+                    ex5: item[6],
+                    ex6: item[7]
                 };
             });
             this.add(table);

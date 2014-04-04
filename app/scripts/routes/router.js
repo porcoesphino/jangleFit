@@ -41,65 +41,90 @@ jangleFit.Routers = jangleFit.Routers || {};
 
 
 
-        goWithMenuUpdate: function(el) {
+        goWithMenuUpdate: function(view) {
             if (!this.mainEl) {
                 this.mainEl = $('#jangleFit-app');
             }
-            this.mainEl.html(el);
+            if (this.currentView) {
+                if (this.currentView.close) {
+                    this.currentView.close()
+                }
+                this.currentView.remove();
+            }
+            this.currentView = view;
+            this.mainEl.html(view.el);
             this.selectMenu();
         },
 
         chart4: function() {
-            var userHTML = '';
-            if (jangleFit.currentUser && jangleFit.currentUser.isInitialised()) {
-                userHTML = new jangleFit.Views.UserCurrentView({model: jangleFit    .currentUser}).render().el.innerHTML;
-            }
-            var ladderHTML = new jangleFit.Views.LadderView({
-                collection: new jangleFit.Collections.LadderCollection()
-            }).render().el;
-            this.goWithMenuUpdate(userHTML + ladderHTML.innerHTML);
+            this.goWithMenuUpdate(
+                new jangleFit.Views.LadderView({
+                    collection: new jangleFit.Collections.LadderCollection()
+                })
+            );
         },
 
         about: function() {
-            this.goWithMenuUpdate(jangleFit.Templates['app/scripts/templates/about.hbs']());
+            this.goWithMenuUpdate(new Backbone.View({el: jangleFit.Templates['app/scripts/templates/about.hbs']()}));
         },
 
-        updateIfAuth: function(elCreateFunc) {
-            var el;
+        updateIfAuth: function(viewCreateFunc) {
+            var view;
             if (!jangleFit.currentUser || !jangleFit.currentUser.isInitialised()) {
-                el = new jangleFit.Views.UserNewView().render().el;
+                view = new jangleFit.Views.UserNewView();
                 this.navigate('');
             } else {
-                el = elCreateFunc();
+                view = viewCreateFunc();
             }
-            this.goWithMenuUpdate(el);
+            this.goWithMenuUpdate(view);
         },
 
 
 
         initial: function() {
             this.updateIfAuth( function() {
-                var summaryHTML = new jangleFit.Views.UserCurrentView({model: jangleFit.currentUser}).render().el;
-                var ladder = new jangleFit.Collections.LadderCollection();
-                ladder.fetch();
-                var ladderHTML = new jangleFit.Views.ProgressView({
-                    model: ladder.get(jangleFit.currentUser.get('level'))
-                }).render().el;
-
-                return summaryHTML.innerHTML + ladderHTML.innerHTML;
+                return new jangleFit.Views.MainView({model: jangleFit.currentUser});
             });
         },
 
         settings: function() {
             this.updateIfAuth( function() {
-                return new jangleFit.Views.SettingsView().render().el;
+                return new jangleFit.Views.SettingsView();
             });
         },
 
         log: function() {
             this.updateIfAuth( function() {
-                return new jangleFit.Views.LogView().render().el;
+                return new jangleFit.Views.LogView();
             });
-        }
+        },
+
+    // Stolen Code
+    //
+    // http://mikeygee.com/blog/backbone.html
+    //
+    // add the following function to your router
+// for any view that may have a dirty condition, set a property named dirty to true, and if the user navigates away, a confirmation dialog will show
+hashChange : function(evt) {
+	if(this.cancelNavigate) { // cancel out if just reverting the URL
+		evt.stopImmediatePropagation();
+		this.cancelNavigate = false;
+		return;
+	}
+	if(this.view && this.view.dirty) {
+		var dialog = confirm("You have unsaved changes. To stay on the page, press cancel. To discard changes and leave the page, press OK");
+		if(dialog == true)
+			return;
+		else {
+			evt.stopImmediatePropagation();
+			this.cancelNavigate = true;
+			window.location.href = evt.originalEvent.oldURL;
+		}
+	}
+},
+beforeUnload : function() {
+	if(this.view && this.view.dirty)
+		return "You have unsaved changes. If you leave or reload this page, your changes will be lost.";
+}
     });
 })();
