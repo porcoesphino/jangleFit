@@ -7,8 +7,8 @@ jangleFit.Routers = jangleFit.Routers || {};
 
     jangleFit.Routers.JanglefitRouter = Backbone.Router.extend({
         initialize: function() {
-            _.bindAll(this, 'beforeUnload', 'hashChange');
 
+            _.bindAll(this, 'beforeUnload', 'hashChange');
             // this will run before backbone's route handler
             $(window).on('hashchange', this.hashChange);
 
@@ -118,7 +118,7 @@ jangleFit.Routers = jangleFit.Routers || {};
                 this.cancelNavigate = false;
                 return;
             }
-            if(this.currentView && this.currentView.dirty) {
+            if(this.currentView && this.dirty) {
                 var dialog = confirm('You have unsaved changes. To stay on the page, press cancel. To discard changes and leave the page, press OK');
                 if(dialog === true) {
                     return;
@@ -132,7 +132,7 @@ jangleFit.Routers = jangleFit.Routers || {};
         },
 
         beforeUnload : function() {
-            if(this.currentView && this.currentView.dirty) {
+            if(this.currentView && this.dirty) {
                 return 'You have unsaved changes. If you leave or reload this page, your changes will be lost.';
             }
         }

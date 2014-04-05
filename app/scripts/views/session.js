@@ -66,7 +66,7 @@ jangleFit.Views = jangleFit.Views || {};
 
         startHandler: function(event) {
             event.preventDefault();
-            this.dirty = true;
+            jangleFit.router.dirty = true;
             this.$el.find('#start').hide();
             this.$el.find('#update').show();
             this.exNo = 0;
@@ -116,7 +116,7 @@ jangleFit.Views = jangleFit.Views || {};
             if (this.exNo >= 5) {
                 this.counterStop();
                 $('#jangleFit-app').find('.jumbotron').html('<h2 class="form-signin-heading text-center">Congratulations!!</h2>');
-                this.dirty = false;
+                jangleFit.router.dirty = false;
             }
         }
 
