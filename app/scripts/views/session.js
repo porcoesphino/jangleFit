@@ -46,9 +46,9 @@ jangleFit.Views = jangleFit.Views || {};
                 this.updateCounter();
                 // TODO: HACK
                 // This line should stop a mobiles screen going to sleep
-                if (!(this.count % 10)) {
+                if (5 === (this.count % 10)) {
                     window.location.hash = 'ignore';
-                    window.setTimeout(function() {window.stop()}, 0);
+                    window.setTimeout(function() {window.stop();}, 0);
                 }
             }
         },

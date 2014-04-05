@@ -141,7 +141,7 @@ jangleFit.Routers = jangleFit.Routers || {};
             }
         },
 
-        beforeUnload : function(evt) {
+        beforeUnload : function() {
             var view = jangleFit.router.currentView;
             var dirty = jangleFit.router.dirty;
             if(view && dirty) {
