@@ -28,15 +28,15 @@ jangleFit.Views = jangleFit.Views || {};
             return this;
         },
 
-       counterStart: function() {
-           this.counter = setInterval(this.countDown.bind(this), 1000); 
-       },
+        counterStart: function() {
+            this.counter = setInterval(this.countDown.bind(this), 1000);
+        },
 
-       counterStop: function() {
+        counterStop: function() {
 // TODO: remove
             console.debug('Killing timer');
             window.clearInterval(this.counter);
-       },
+        },
 
         countDown: function() {
 // TODO: remove

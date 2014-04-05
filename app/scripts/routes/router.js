@@ -9,9 +9,9 @@ jangleFit.Routers = jangleFit.Routers || {};
         initialize: function() {
 
             // this will run before backbone's route handler
-            $(window).on("hashchange", this.hashChange);
+            $(window).on('hashchange', this.hashChange);
 
-            $(window).on("beforeunload", this.beforeUnload);
+            $(window).on('beforeunload', this.beforeUnload);
             Backbone.history.start({pushState:false});
         },
 
