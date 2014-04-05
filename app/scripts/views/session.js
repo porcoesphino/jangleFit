@@ -13,7 +13,8 @@ jangleFit.Views = jangleFit.Views || {};
             'click button#next': 'nextExercise'
         },
 
-        initialize: function () {
+        initialize: function (options) {
+            this.rung = options.rung;
             this.exNo = 0;
             this.count = '';
             this.render();
@@ -57,7 +58,7 @@ jangleFit.Views = jangleFit.Views || {};
             var durations = [2, 1, 1, 1, 6];
             var exLabel = 'ex' + this.exNo;
             this.$el.find('#activity').text(actions[this.exNo]);
-            this.$el.find('#reps').attr('value', this.model.get(exLabel));
+            this.$el.find('#reps').attr('value', this.rung.get(exLabel));
             this.count = durations[this.exNo]*60;
             this.updateCounter();
         },

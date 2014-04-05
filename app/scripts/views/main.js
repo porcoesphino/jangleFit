@@ -14,7 +14,7 @@ jangleFit.Views = jangleFit.Views || {};
                 model: this.rung
             });
             this.sessionView = new jangleFit.Views.SessionView({
-                model: this.rung
+                rung: this.rung
             });
             this.render();
         },
