@@ -44,6 +44,8 @@ jangleFit.Views = jangleFit.Views || {};
             if (!isNaN(this.count)) {
                 this.count = this.count - 1;
                 this.updateCounter();
+                // This line should stop a mobiles screen going to sleep
+                window.location = window.location;
             }
         },
 
