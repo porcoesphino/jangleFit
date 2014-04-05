@@ -58,6 +58,7 @@ jangleFit.Routers = jangleFit.Routers || {};
                 this.currentView.remove();
             }
             this.currentView = view;
+            this.dirty = false;
             this.mainEl.html(view.el);
             this.selectMenu();
         },
