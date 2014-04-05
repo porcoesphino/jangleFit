@@ -10,31 +10,36 @@ jangleFit.Views = jangleFit.Views || {};
         template: jangleFit.Templates['app/scripts/templates/session.hbs'],
 
         events: {
-            'click button#next': 'nextExercise'
+            'click button#next-btn': 'nextHandler',
+            'click button#start-btn': 'startHandler'
         },
 
         initialize: function (options) {
             this.rung = options.rung;
-            this.exNo = 0;
-            this.count = '';
             this.render();
-            this.counter = setInterval(this.countDown.bind(this), 1000);
         },
 
         close: function() {
-// TODO: remove
-            console.debug('Killing timer');
-            window.clearInterval(this.counter);
-            jangleFit.router.off('route', this.onRoute);
+            this.counterStop();
         },
 
         render: function () {
             this.$el.html(this.template());
-            this.updatePanel();
             return this;
         },
 
+       counterStart: function() {
+           this.counter = setInterval(this.countDown.bind(this), 1000); 
+       },
+
+       counterStop: function() {
+// TODO: remove
+            console.debug('Killing timer');
+            window.clearInterval(this.counter);
+       },
+
         countDown: function() {
+// TODO: remove
             console.debug('working');
             if (!isNaN(this.count)) {
                 this.count = this.count - 1;
@@ -53,7 +58,44 @@ jangleFit.Views = jangleFit.Views || {};
             }
         },
 
-        updatePanel: function() {
+        startHandler: function(event) {
+            event.preventDefault();
+            jangleFit.router.dirty = true;
+            this.$el.find('#start').hide();
+            this.$el.find('#update').show();
+            this.exNo = 0;
+            this.count = '';
+            this.renderPanel();
+            this.counterStart();
+        },
+
+        nextHandler: function(event) {
+            event.preventDefault();
+            if (!this.state) {
+                this.state = 1;
+                this.counterStop();
+                this.renderButton();
+            } else {
+                this.state = 0;
+                this.nextExercise();
+                this.counterStart();
+                this.renderPanel();
+            }
+        },
+
+        renderButton: function() {
+            var button = this.$el.find('#next-btn');
+            var buttonText = 'Done!';
+            if (button.text() === buttonText) {
+                buttonText = 'Next!';
+            }
+            button.text(buttonText);
+        },
+
+        renderPanel: function() {
+
+            this.renderButton();
+
             var actions = ['Stretching', 'Sit-up', 'Extension', 'Push-up', 'Run'];
             var durations = [2, 1, 1, 1, 6];
             var exLabel = 'ex' + this.exNo;
@@ -63,14 +105,12 @@ jangleFit.Views = jangleFit.Views || {};
             this.updateCounter();
         },
 
-        nextExercise: function (event) {
-            event.preventDefault();
+        nextExercise: function () {
             this.exNo = this.exNo + 1;
-            if (this.exNo < 5) {
-                this.updatePanel();
-            } else {
-                this.close();
+            if (this.exNo >= 5) {
+                this.counterStop();
                 $('#jangleFit-app').find('.jumbotron').html('<h2 class="form-signin-heading text-center">Congratulations!!</h2>');
+                jangleFit.router.dirty = false;
             }
         }
 

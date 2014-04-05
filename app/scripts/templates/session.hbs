@@ -1,11 +1,13 @@
 <div class="jumbotron">
 <h2 class="form-signin-heading text-center">Let's Go!</h2>
+<div id="update" style="display:none;">
 <h2 id="timer" class="text-center">0</h2>
 <div class="input-group">
   <span class="input-group-addon" id="activity">Activity</span>
   <input type="number" class="form-control" placeholder="Reps" id="reps" step="1" min="0">
   <div class="input-group-btn">
-    <button id="next" type="button" class="btn btn-default" tabindex="-1">Next!</button>
+    <button id="next-btn" type="button" class="btn btn-default" tabindex="-1"></button>
+{{!--
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1">
       <span class="caret"></span>
       <span class="sr-only">Toggle Dropdown</span>
@@ -13,6 +15,11 @@
     <ul class="dropdown-menu pull-right" role="menu">
       <li><a id="back" href="#">Back</a></li>
     </ul>
+--}}
   </div>
 </div>
+</div>
+  <div id="start">
+    <button id="start-btn" class="btn btn-default">Start!</button>
+  </div>
 </div>
