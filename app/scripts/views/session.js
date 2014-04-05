@@ -46,9 +46,9 @@ jangleFit.Views = jangleFit.Views || {};
                 this.updateCounter();
                 // TODO: HACK
                 // This line should stop a mobiles screen going to sleep
-                if (5 === (this.count % 10)) {
-                    window.location.hash = 'ignore';
-                    window.setTimeout(function() {window.stop();}, 0);
+                if (0 === (this.count % 10)) {
+                    jangleFit.router.cancelNavigate = true;
+                    window.location = window.location;
                 }
             }
         },
@@ -66,7 +66,7 @@ jangleFit.Views = jangleFit.Views || {};
 
         startHandler: function(event) {
             event.preventDefault();
-            jangleFit.router.dirty = true;
+            this.dirty = true;
             this.$el.find('#start').hide();
             this.$el.find('#update').show();
             this.exNo = 0;
@@ -116,7 +116,7 @@ jangleFit.Views = jangleFit.Views || {};
             if (this.exNo >= 5) {
                 this.counterStop();
                 $('#jangleFit-app').find('.jumbotron').html('<h2 class="form-signin-heading text-center">Congratulations!!</h2>');
-                jangleFit.router.dirty = false;
+                this.dirty = false;
             }
         }
 
