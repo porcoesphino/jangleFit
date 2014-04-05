@@ -40,12 +40,16 @@ jangleFit.Views = jangleFit.Views || {};
 
         countDown: function() {
 // TODO: remove
-            console.debug('working');
+            console.debug('Still here');
             if (!isNaN(this.count)) {
                 this.count = this.count - 1;
                 this.updateCounter();
+                // TODO: HACK
                 // This line should stop a mobiles screen going to sleep
-                window.location = window.location;
+                if (!(this.count % 10)) {
+                    window.location.hash = 'ignore';
+                    window.setTimeout(function() {window.stop()}, 0);
+                }
             }
         },
 

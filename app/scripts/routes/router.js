@@ -118,6 +118,14 @@ jangleFit.Routers = jangleFit.Routers || {};
                 this.cancelNavigate = false;
                 return;
             }
+//TODO: Hack for mobile until apps are made
+            if(window.location.hash === '#ignore' ||
+               window.location.hash === 'ignore') {
+                evt.stopImmediatePropagation();
+                this.cancelNavigate = true;
+                window.location.href = evt.originalEvent.oldURL;
+                return;
+            }
             var view = jangleFit.router.currentView;
             var dirty = jangleFit.router.dirty;
             if(view && dirty) {
@@ -133,7 +141,7 @@ jangleFit.Routers = jangleFit.Routers || {};
             }
         },
 
-        beforeUnload : function() {
+        beforeUnload : function(evt) {
             var view = jangleFit.router.currentView;
             var dirty = jangleFit.router.dirty;
             if(view && dirty) {
