@@ -120,7 +120,7 @@ jangleFit.Routers = jangleFit.Routers || {};
                 return;
             }
             if(this.currentView && this.dirty) {
-                var dialog = confirm('You have unsaved changes. To stay on the page, press cancel. To discard changes and leave the page, press OK');
+                var dialog = confirm('You have unsaved changes. Exit?');
                 if(dialog === true) {
                     return;
                 } else {
@@ -132,9 +132,9 @@ jangleFit.Routers = jangleFit.Routers || {};
             }
         },
 
-        beforeUnload : function() {
+        beforeUnload : function(evt) {
             if(this.currentView && this.dirty) {
-                return 'You have unsaved changes. If you leave or reload this page, your changes will be lost.';
+                return 'You have unsaved changes. Exit?';
             }
         }
     });
