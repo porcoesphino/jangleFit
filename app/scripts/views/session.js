@@ -60,6 +60,11 @@ jangleFit.Views = jangleFit.Views || {};
 
         startHandler: function(event) {
             event.preventDefault();
+            this.session = new jangleFit.Models.Session();
+            this.progress = new jangleFit.Views.SessionCurrentView({
+                el: this.$el.find('#session-current')[0],
+                model: this.session
+            });
             this.$el.find('#start').hide();
             this.$el.find('#update').show();
             this.exNo = 0;
