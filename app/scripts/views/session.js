@@ -60,7 +60,6 @@ jangleFit.Views = jangleFit.Views || {};
 
         startHandler: function(event) {
             event.preventDefault();
-            jangleFit.router.dirty = true;
             this.$el.find('#start').hide();
             this.$el.find('#update').show();
             this.exNo = 0;
