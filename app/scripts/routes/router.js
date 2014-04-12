@@ -45,8 +45,6 @@ jangleFit.Routers = jangleFit.Routers || {};
             }
         },
 
-
-
         goWithMenuUpdate: function(view) {
             if (!this.mainEl) {
                 this.mainEl = $('#jangleFit-app');
