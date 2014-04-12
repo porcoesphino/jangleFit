@@ -15,10 +15,6 @@ jangleFit.Views = jangleFit.Views || {};
 
         template: jangleFit.Templates['app/scripts/templates/user-new.hbs'],
 
-        initialize: function() {
-            this.render();
-        },
-
         events: {
             'submit': 'createUser'
         },
