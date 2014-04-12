@@ -1,4 +1,4 @@
-/*global jangleFit, Backbone, confirm*/
+/*global _, jangleFit, Backbone, confirm*/
 
 jangleFit.Routers = jangleFit.Routers || {};
 
@@ -130,7 +130,7 @@ jangleFit.Routers = jangleFit.Routers || {};
             }
         },
 
-        beforeUnload : function(evt) {
+        beforeUnload : function() {
             if(this.currentView && this.dirty) {
                 return 'You have unsaved changes. Exit?';
             }
