@@ -84,8 +84,6 @@ jangleFit.Routers = jangleFit.Routers || {};
             this.goWithMenuUpdate(view);
         },
 
-
-
         initial: function() {
             this.updateIfAuth( function() {
                 return new jangleFit.Views.MainView({model: jangleFit.currentUser});
@@ -104,8 +102,7 @@ jangleFit.Routers = jangleFit.Routers || {};
             });
         },
 
-        // Stolen Code
-        //
+        // Code based on:
         // http://mikeygee.com/blog/backbone.html
         //
         // add the following function to your router

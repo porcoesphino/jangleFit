@@ -17,6 +17,7 @@ jangleFit.Views = jangleFit.Views || {};
         initialize: function (options) {
             this.rung = options.rung;
             this.render();
+            this.$reps = this.$el.find('#reps');
         },
 
         close: function() {
@@ -33,14 +34,10 @@ jangleFit.Views = jangleFit.Views || {};
         },
 
         counterStop: function() {
-// TODO: remove
-            console.debug('Killing timer');
             window.clearInterval(this.counter);
         },
 
         countDown: function() {
-// TODO: remove
-            console.debug('Still here');
             if (!isNaN(this.count)) {
                 this.count = this.count - 1;
                 this.updateCounter();
@@ -49,12 +46,12 @@ jangleFit.Views = jangleFit.Views || {};
 
         updateCounter: function() {
             var overtimeClass = 'text-danger';
-            var counterEl = this.$el.find('#timer');
-            counterEl.text(this.count);
+            var $counterEl = this.$el.find('#timer');
+            $counterEl.text(this.count);
             if (this.count < 0) {
-                counterEl.addClass(overtimeClass);
+                $counterEl.addClass(overtimeClass);
             } else {
-                counterEl.removeClass(overtimeClass);
+                $counterEl.removeClass(overtimeClass);
             }
         },
 
@@ -70,7 +67,24 @@ jangleFit.Views = jangleFit.Views || {};
             this.exNo = 0;
             this.count = '';
             this.renderPanel();
+            this.startSet();
             this.counterStart();
+        },
+
+        currentInterval: function() {
+            var durations = [2, 1, 1, 1, 6];
+            return durations[this.exNo]*60;
+        },
+
+        durationCompleted: function() {
+            return this.currentInterval() - this.count;
+        },
+
+        startSet: function() {
+            this.setCurrent = new jangleFit.Models.Set({
+                activity: this.currentActivity()
+            });
+            this.session.addSet(this.setCurrent);
         },
 
         nextHandler: function(event) {
@@ -79,10 +93,17 @@ jangleFit.Views = jangleFit.Views || {};
                 this.state = 1;
                 this.counterStop();
                 this.renderButton();
+                this.setCurrent.set('duration', this.durationCompleted());
+                this.setCurrent.set('amount', this.$reps.val());
             } else {
-                this.state = 0;
-                this.nextExercise();
-                this.counterStart();
+                if (this.setCurrent) {
+                    this.setCurrent.set('amount', this.$reps.val());
+                }
+                if (this.nextExercise()) {
+                    this.state = 0;
+                    this.startSet();
+                    this.counterStart();
+                }
                 this.renderPanel();
             }
         },
@@ -96,26 +117,30 @@ jangleFit.Views = jangleFit.Views || {};
             button.text(buttonText);
         },
 
-        renderPanel: function() {
-
-            this.renderButton();
-
+        currentActivity: function() {
             var actions = ['Stretching', 'Sit-up', 'Extension', 'Push-up', 'Run'];
-            var durations = [2, 1, 1, 1, 6];
+            return actions[this.exNo];
+        },
+
+        renderPanel: function() {
+            this.renderButton();
             var exLabel = 'ex' + this.exNo;
-            this.$el.find('#activity').text(actions[this.exNo]);
-            this.$el.find('#reps').attr('value', this.rung.get(exLabel));
-            this.count = durations[this.exNo]*60;
+            this.$el.find('#activity').text(this.currentActivity());
+            this.$reps.val(this.rung.get(exLabel));
+            this.count = this.currentInterval();
             this.updateCounter();
         },
 
         nextExercise: function () {
-            this.exNo = this.exNo + 1;
-            if (this.exNo >= 5) {
+            if (this.exNo >= 4) {
                 this.counterStop();
-                $('#jangleFit-app').find('.jumbotron').html('<h2 class="form-signin-heading text-center">Congratulations!!</h2>');
+                this.$el.find('.jumbotron').get(0).innerHTML = '<h2 class="text-center">Congratulations!!</h2>';
+                this.session.saveAll();
                 jangleFit.router.dirty = false;
+                return false;
             }
+            this.exNo = this.exNo + 1;
+            return true;
         }
 
     });

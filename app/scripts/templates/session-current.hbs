@@ -1,6 +1,5 @@
-<div class="jumbotron">
-<h2 class="form-signin-heading text-center">Session Started</h2>
-<h3 id="timestamp">{{ timestamp }}</h3>
+    <div class="panel panel-default">
+    <div class="panel-heading" id="timestamp">{{ timestamp }}</div>
       <div class="table-responsive">
         <table class="table table-striped table-bordered table-condensed">
           <thead>
@@ -8,7 +7,8 @@
               <th>Timestamp</th>
               <th>Activity</th>
               <th>Duration</th>
-              <th>Count</th>
+              <th>Amount</th>
+              <th></th>
             </tr>
           </thead>
           <tbody id="sets">
@@ -16,6 +16,6 @@
 {{! Where our rungs will go }}
 
           </tbody>
-      </table>
+        </table>
+      </div>
     </div>
-<table>

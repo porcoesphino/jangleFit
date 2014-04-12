@@ -11,6 +11,15 @@ jangleFit.Views = jangleFit.Views || {};
 
         initialize: function () {
             this.render();
+            this.listenTo(this.model, 'change', this.render);
+            this.listenTo(this.model.collection, 'add', this.addSet);
+        },
+
+        addSet: function(set) {
+            if (!this.$sets) {
+                this.$sets = this.$el.find('#sets');
+            }
+            this.$sets.append(new jangleFit.Views.SetView({model: set}).$el);
         },
 
         render: function () {
