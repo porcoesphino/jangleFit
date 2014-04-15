@@ -1,9 +1,59 @@
-<form class="form-signin" role="form">
-  <h2 class="form-signin-heading">Please sign in</h2>
-  <input type="email" class="form-control" placeholder="Email address" required="" autofocus="">
-  <input type="password" class="form-control" placeholder="Password" required="">
-  <label class="checkbox">
-    <input type="checkbox" value="remember-me"> Remember me
-  </label>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-</form>
+<div class="omb_login">
+<!-- Tabbed is awesome!! -->
+  <h3 class="text-center">Login or <a href="#">Sign up</a></h3>
+		<div class="row">
+    	    <div class="col-xs-4 col-sm-offset-3 col-sm-2">
+		        <a href="#" class="btn btn-lg btn-block omb_btn-facebook">
+			        <i class="fa fa-facebook visible-xs"></i>
+			        <span class="hidden-xs">Facebook</span>
+		        </a>
+	        </div>
+        	<div class="col-xs-4 col-sm-2">
+		        <a href="#" class="btn btn-lg btn-block omb_btn-twitter">
+			        <i class="fa fa-twitter visible-xs"></i>
+			        <span class="hidden-xs">Twitter</span>
+		        </a>
+	        </div>	
+        	<div class="col-xs-4 col-sm-2">
+		        <a href="#" class="btn btn-lg btn-block omb_btn-google">
+			        <i class="fa fa-google-plus visible-xs"></i>
+			        <span class="hidden-xs">Google+</span>
+		        </a>
+	        </div>	
+		</div>
+
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-offset-3 col-sm-6">	
+<div style="width: 100%; text-align: center; border-bottom: 1px solid #E7E7E7; line-height: 0.1em; margin: 10px 0 20px;">
+			<span style="background:#fff; padding:0 10px; ">OR</span></div>
+			    <form class="omb_loginForm" action="" autocomplete="off" method="POST">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-user"></i></span>
+						<input type="text" class="form-control" name="username" placeholder="email address">
+					</div>
+					<span class="help-block"></span>
+										
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+						<input  type="password" class="form-control" name="password" placeholder="Password">
+					</div>
+                    <span class="help-block" style="color:transparent;">Password error</span>
+
+					<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+				</form>
+			</div>
+    	</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-offset-3 col-sm-3">
+				<label class="checkbox">
+					<input type="checkbox" value="remember-me">Remember Me
+				</label>
+			</div>
+			<div class="col-xs-12 col-sm-3">
+				<p class="omb_forgotPwd" style="margin-top:10px;text-align:right">
+					<a href="#">Forgot password?</a>
+				</p>
+			</div>
+		</div>
+	</div>

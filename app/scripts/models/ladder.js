@@ -7,6 +7,7 @@ jangleFit.Models = jangleFit.Models || {};
 
     jangleFit.Models.Session = Backbone.Model.extend({
 
+
         initialize: function() {
             this.localStorage = new Backbone.LocalStorage(jangleFit.storePrefix + '-sessions');
             this.id = $.now();

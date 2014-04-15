@@ -9,11 +9,11 @@ window.jangleFit = {
         'use strict';
 
         var temp = new jangleFit.Models.User();
-        temp.fetch();
         if (temp.isInitialised()) {
-            jangleFit.currentUser = temp;
+            jangleFit.user = temp;
         }
 
+        jangleFit.plans = new this.Collections.PlanCollection();
         jangleFit.router = new this.Routers.JanglefitRouter();
     }
 };

@@ -13,6 +13,7 @@
         <link rel="shortcut icon" type="image/png" href="favicon.png" sizes="32x32">
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/calendar.css">
         <!-- endbuild -->
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
@@ -75,7 +76,9 @@
 
       <div class="footer">
         <div class="container">
-          <p>♥ Bojangles Software</p>
+          <div class="pull-left">♥ Bojangles Software</div>
+          <div class="pull-right"><a href="https://github.com/porcoesphino/jangleFit/issues">Bug Reports</a></div>
+          <div class="center-block text-center" style="width:15em;">© 2014 <a href="https://github.com/porcoesphino/jangleFit/blob/master/LICENSE">License</a></div>
         </div>
       </div>
 
@@ -118,23 +121,27 @@
         <!-- build:js({.tmp,app}) scripts/main.js -->
         <script src="scripts/main.js"></script>
         <script src="scripts/templates.js"></script>
-        <script src="scripts/collections/ladder.js"></script>
+        <script src="scripts/collections/rung.js"></script>
         <script src="scripts/collections/set.js"></script>
+        <script src="scripts/collections/progress.js"></script>
+        <script src="scripts/collections/plan.js"></script>
         <script src="scripts/models/rung.js"></script>
         <script src="scripts/models/user.js"></script>
         <script src="scripts/models/session.js"></script>
         <script src="scripts/models/set.js"></script>
+        <script src="scripts/models/progress.js"></script>
+        <script src="scripts/views/progress.js"></script>
+        <script src="scripts/views/calendar.js"></script>
         <script src="scripts/views/rung.js"></script>
         <script src="scripts/views/ladder.js"></script>
-        <script src="scripts/views/progress.js"></script>
+        <script src="scripts/views/sign-up.js"></script>
         <script src="scripts/views/log.js"></script>
         <script src="scripts/views/settings.js"></script>
+        <script src="scripts/views/training.js"></script>
         <script src="scripts/views/session.js"></script>
-        <script src="scripts/views/session-current.js"></script>
         <script src="scripts/views/set.js"></script>
-        <script src="scripts/views/user-new.js"></script>
-        <script src="scripts/views/user-current.js"></script>
-        <script src="scripts/views/main.js"></script>
+        <script src="scripts/views/home.js"></script>
+        <script src="scripts/views/today.js"></script>
         <script src="scripts/routes/router.js"></script>
         <!-- endbuild -->
 </body>

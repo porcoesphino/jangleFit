@@ -1,0 +1,30 @@
+<div class="panel-group">
+  <div class="panel panel-success">
+    <div class="panel-heading">
+       {{ title }}
+      {{#each levelChain}}
+      - {{this.prefix}} {{this.level}}
+      {{/each}}
+      </p>
+    </div>
+    <div id="panel-content">
+
+      <div class="jumbotron">
+        <div id="update">
+          <h2 class="text-center">Let's Go!</h2>
+          <h2 id="timer" class="text-center">0</h2>
+          <div class="input-group">
+            <span class="input-group-addon" id="activity">Activity</span>
+            <input type="number" class="form-control" placeholder="Reps" id="reps" step="1" min="0">
+            <div class="input-group-btn">
+              <button id="next-btn" type="button" class="btn btn-default" tabindex="-1"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="session"></div>
+
+   </div>
+  </div>
+</div>

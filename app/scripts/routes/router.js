@@ -19,11 +19,16 @@ jangleFit.Routers = jangleFit.Routers || {};
         routes: {
             // TODO: clean these up
             '': 'initial',
+            'jangleFit': 'initial',
+            'janglefit': 'initial',
+            '(/)today/:plan(/)' : 'today',
+            '(/)training/:plan(/)' : 'training',
             '(/)settings(/)' : 'settings',
             '(/)log(/)' : 'log',
             '(/)about(/)' : 'about',
+            '(/)login(/)' : 'login',
             '(/)chart4(/)' : 'chart4',
-            '*notFound' : 'initial'
+            '*notFound' : 'unknown'
         },
 
         // TODO: hack
@@ -61,10 +66,18 @@ jangleFit.Routers = jangleFit.Routers || {};
             this.selectMenu();
         },
 
+        unknown: function() {
+            this.goWithMenuUpdate(
+                new Backbone.View({
+                    el: jangleFit.Templates['app/scripts/templates/404.hbs']()
+                })
+            );
+        },
+
         chart4: function() {
             this.goWithMenuUpdate(
                 new jangleFit.Views.LadderView({
-                    collection: new jangleFit.Collections.LadderCollection()
+                    collection: new jangleFit.Collections.RungCollection()
                 })
             );
         },
@@ -73,12 +86,17 @@ jangleFit.Routers = jangleFit.Routers || {};
             this.goWithMenuUpdate(new Backbone.View({el: jangleFit.Templates['app/scripts/templates/about.hbs']()}));
         },
 
+        login: function() {
+            this.goWithMenuUpdate(new Backbone.View({el: jangleFit.Templates['app/scripts/templates/login.hbs']()}));
+        },
+
         updateIfAuth: function(viewCreateFunc) {
             var view;
-            if (!jangleFit.currentUser || !jangleFit.currentUser.isInitialised()) {
-                view = new jangleFit.Views.UserNewView();
+            if (!jangleFit.user || !jangleFit.user.isInitialised()) {
+                view = new jangleFit.Views.SignupView();
                 this.navigate('');
             } else {
+                jangleFit.storePrefix = 'janglefit-' + jangleFit.user.get('givenName').toLowerCase();
                 view = viewCreateFunc();
             }
             this.goWithMenuUpdate(view);
@@ -86,7 +104,23 @@ jangleFit.Routers = jangleFit.Routers || {};
 
         initial: function() {
             this.updateIfAuth( function() {
-                return new jangleFit.Views.MainView({model: jangleFit.currentUser});
+                return new jangleFit.Views.HomeView({model: jangleFit.user});
+            });
+        },
+
+        today: function(plan) {
+            this.updateIfAuth( function() {
+                return new jangleFit.Views.TodayView({
+                    model: jangleFit.user.getPlanMeta(plan)
+                });
+            });
+        },
+
+        training: function(plan) {
+            this.updateIfAuth( function() {
+                return new jangleFit.Views.TrainingView({
+                    model: jangleFit.user.getPlanMeta(plan)
+                });
             });
         },
 

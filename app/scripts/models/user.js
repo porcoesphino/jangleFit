@@ -5,15 +5,60 @@ jangleFit.Models = jangleFit.Models || {};
 (function () {
     'use strict';
 
-    jangleFit.Models.User= Backbone.Model.extend({
+    jangleFit.Models.User = Backbone.Model.extend({
 
-        id: 'current-user',
+        id: 'user',
 
-        defaults: {level: 'D-'},
+        defaults: {
+            plans: [
+                {
+                    title: '5BX',
+                    levelChain: [
+                        {prefix: 'Chart', level: '4'},
+                        {prefix: 'Level', level: 'D-'}
+                    ]
+                }, {
+                    title: 'Hackers',
+                    levelChain: [
+                        {prefix: 'Level', level: '100'},
+                    ]
+                }
+            ]
+        },
 
-        localStorage: new Backbone.LocalStorage('janglefit-backbone-user-data'),
+        addPlans: function(plans) {
+            this.collection = new jangleFit.Collections.ProgressCollection();
+            this.collection.add(plans);
+            this.unset('plans', {silent: true});
+        },
+
+        parse: function(response) {
+            var planList = this.get('plans');
+            if (response.plans) {
+                planList = response.plans;
+            }
+            this.addPlans(planList);
+            delete response.plans;
+            return response;
+        },
+
+        plansToJSON: function() {
+           if(!this.collection) {
+               this.addPlans(this.get('plans'));
+           }
+           return this.collection.models.map( function(item) {return item.toJSON()});
+        },
+
+        toJSON: function() {
+            var result = Backbone.Model.prototype.toJSON.call(this);
+            result['plans'] = this.plansToJSON();
+            return result;
+        },
 
         initialize: function() {
+            this.localStorage = new Backbone.LocalStorage('janglefit');
+            this.fetch();
+            //
             this.on('change', this.localSave, this);
         },
 
@@ -24,6 +69,10 @@ jangleFit.Models = jangleFit.Models || {};
 
         isInitialised: function() {
             return this.get('givenName') && this.get('familyName');
+        },
+
+        getPlanMeta: function(title) {
+            return this.collection.get(title);
         }
 
     });

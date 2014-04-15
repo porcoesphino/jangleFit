@@ -1,0 +1,23 @@
+<h2 class="text-center">Welcome {{givenName}}!</h2>
+<table class="table">
+  <theader>
+    <tr>
+       <th>Plan</th>
+       <th>History</th>
+       <th>Level</th>
+    </tr>
+  </theader>
+  <tbody>
+    {{#each plans}}
+    <tr>
+      <td><a href="#/today/{{this.title}}">{{this.title}}</a></td>
+      <td><img src="images/sparkline.png" style="width:100%;min-width:100px;height:3ex;padding-right:20px"></td>
+      <td>
+      {{#each levelChain}}
+      {{#if @index}}<span class="glyphicon glyphicon-chevron-right"></span>{{/if}}{{this.prefix}} <span class="badge">{{this.level}}</span>
+      {{/each}}
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+<div id="calendar"></div>

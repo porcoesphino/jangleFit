@@ -22,13 +22,13 @@ jangleFit.Views = jangleFit.Views || {};
         },
 
         initialize: function () {
-            this.listenTo(jangleFit.currentUser, 'change', this.render);
+            this.listenTo(jangleFit.user , 'change', this.render);
             this.render();
         },
 
         // TODO: Horrible hack
         setLevel: function() {
-            var level = jangleFit.currentUser.get('level');
+            var level = jangleFit.user.getPlanMeta('5BX').get('levelChain')[1].level;
             if (level) {
                 var option = this.$el.find('option:contains("'+level+'")');
                 if (option.length !== 1) {
@@ -43,7 +43,7 @@ jangleFit.Views = jangleFit.Views || {};
         },
 
         render: function () {
-            this.$el.html(this.template(jangleFit.currentUser.toJSON()));
+            this.$el.html(this.template(jangleFit.user.toJSON()));
             this.setLevel();
             return this;
         },
@@ -53,7 +53,9 @@ jangleFit.Views = jangleFit.Views || {};
             var value = $('option:selected', field).val();
             var data = {};
             data[field.attr('id')] = value;
-            jangleFit.currentUser.set(data);
+//TODO: HACK
+            jangleFit.user.getPlanMeta('5BX').get('levelChain')[1].level = value;
+            jangleFit.user.save();
             this.setLevel();
         },
  
@@ -63,7 +65,7 @@ jangleFit.Views = jangleFit.Views || {};
             if (field[0].checkValidity()) {
                 var data = {};
                 data[field.attr('id')] = field.val();
-                jangleFit.currentUser.set(data);
+                jangleFit.user.set(data);
                 formGroup[0].classList.remove('has-error');
             } else {
                 formGroup[0].classList.add('has-error');

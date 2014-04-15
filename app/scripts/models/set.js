@@ -7,7 +7,6 @@ jangleFit.Models = jangleFit.Models || {};
 
     jangleFit.Models.Set = Backbone.Model.extend({
 
-        localStorage: new Backbone.LocalStorage('janglefit-backbone-sets'),
         defaults: {
             'activity': '',
             'duration': 0, // in seconds
@@ -16,6 +15,7 @@ jangleFit.Models = jangleFit.Models || {};
         },
 
         initialize: function() {
+            this.localStorage = new Backbone.LocalStorage(jangleFit.storePrefix + '-sets');
             this.id = $.now();
             this.set('timestamp', this.id);
         },

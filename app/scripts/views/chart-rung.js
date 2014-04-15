@@ -4,7 +4,9 @@ jangleFit.Views = jangleFit.Views || {};
 
 (function () {
     'use strict';
-    jangleFit.Views.ProgressView = Backbone.View.extend({
+Make this a generic version of the ladder
+// Ladder may as well use this
+    jangleFit.Views.ChartRungView = Backbone.View.extend({
 
         template: jangleFit.Templates['app/scripts/templates/progress.hbs'],
 
