@@ -5,7 +5,7 @@ jangleFit.Views = jangleFit.Views || {};
 (function () {
     'use strict';
 
-    jangleFit.Views.SignupView = Backbone.View.extend({
+    jangleFit.Views.LoginView = Backbone.View.extend({
 
         tagName: 'form',
 
@@ -13,7 +13,7 @@ jangleFit.Views = jangleFit.Views || {};
 
         attributes: {'role': 'form'},
 
-        template: jangleFit.Templates['app/scripts/templates/sign-up.hbs'],
+        template: jangleFit.Templates['app/scripts/templates/login.hbs'],
 
         initialize: function() {
             this.render();

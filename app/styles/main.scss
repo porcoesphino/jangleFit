@@ -155,11 +155,9 @@ div.navbar {
 }
 
 // We don't want the initial hi to be too big
-#jangleFit-app > form {
-  max-width: 400px;
-}
 
-#jangleFit-app > form > button {
+#jangleFit-app form div#authenticate button,
+#jangleFit-app form div#signup button {
   margin-top: 5px;
 }
 

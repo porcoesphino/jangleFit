@@ -18,7 +18,7 @@ jangleFit.Views = jangleFit.Views || {};
         },
 
         startHandler: function() {
-             jangleFit.router.navigate('#/training/' + this.model.get('title'));
+            jangleFit.router.navigate('#/training/' + this.model.get('title'));
         },
 
         render: function () {

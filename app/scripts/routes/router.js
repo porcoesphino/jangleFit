@@ -87,13 +87,14 @@ jangleFit.Routers = jangleFit.Routers || {};
         },
 
         login: function() {
-            this.goWithMenuUpdate(new Backbone.View({el: jangleFit.Templates['app/scripts/templates/login.hbs']()}));
+            var view = new jangleFit.Views.LoginView();
+            this.goWithMenuUpdate(view);
         },
 
         updateIfAuth: function(viewCreateFunc) {
             var view;
             if (!jangleFit.user || !jangleFit.user.isInitialised()) {
-                view = new jangleFit.Views.SignupView();
+                view = new jangleFit.Views.LoginView();
                 this.navigate('');
             } else {
                 jangleFit.storePrefix = 'janglefit-' + jangleFit.user.get('givenName').toLowerCase();

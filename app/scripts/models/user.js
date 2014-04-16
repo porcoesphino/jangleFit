@@ -43,15 +43,15 @@ jangleFit.Models = jangleFit.Models || {};
         },
 
         plansToJSON: function() {
-           if(!this.collection) {
-               this.addPlans(this.get('plans'));
-           }
-           return this.collection.models.map( function(item) {return item.toJSON()});
+            if(!this.collection) {
+                this.addPlans(this.get('plans'));
+            }
+            return this.collection.models.map( function(item) {return item.toJSON();});
         },
 
         toJSON: function() {
             var result = Backbone.Model.prototype.toJSON.call(this);
-            result['plans'] = this.plansToJSON();
+            result.plans = this.plansToJSON();
             return result;
         },
 

@@ -12,7 +12,7 @@ jangleFit.Collections = jangleFit.Collections || {};
             return this.getLadder().get(level);
         },
 
-        getLadder: function(list) {
+        getLadder: function() {
             if (!this.cached) {
                 this.cached = new jangleFit.Collections.RungCollection();
                 this.cached.fetch();

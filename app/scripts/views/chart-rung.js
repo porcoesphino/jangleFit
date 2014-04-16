@@ -4,7 +4,7 @@ jangleFit.Views = jangleFit.Views || {};
 
 (function () {
     'use strict';
-Make this a generic version of the ladder
+// Make this a generic version of the ladder
 // Ladder may as well use this
     jangleFit.Views.ChartRungView = Backbone.View.extend({
 

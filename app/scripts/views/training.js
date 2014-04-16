@@ -13,7 +13,7 @@ jangleFit.Views = jangleFit.Views || {};
             'click button#next-btn': 'nextHandler',
         },
 
-        initialize: function (options) {
+        initialize: function () {
             this.rung = this.model.getCurrentRung();
             this.render();
             this.$reps = this.$el.find('#reps');
