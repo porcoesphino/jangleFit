@@ -23,7 +23,7 @@ jangleFit.Views = jangleFit.Views || {};
 
         render: function () {
             var rows = [];
-            var current = this.model.getCurrentRung();
+            var current = this.model.getRungModel();
             if (current) {
                 current = current.toJSON();
                 current.label = 'Current';

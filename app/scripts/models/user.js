@@ -13,15 +13,12 @@ jangleFit.Models = jangleFit.Models || {};
             plans: [
                 {
                     title: '5BX',
-                    levelChain: [
-                        {prefix: 'Chart', level: '4'},
-                        {prefix: 'Level', level: 'D-'}
-                    ]
+                    ladder: '4',
+                    rung: 'D-'
                 }, {
                     title: 'Hackers',
-                    levelChain: [
-                        {prefix: 'Level', level: '100'},
-                    ]
+                    ladder: '',
+                    rung: '100'
                 }
             ]
         },
@@ -71,7 +68,7 @@ jangleFit.Models = jangleFit.Models || {};
             return this.get('givenName') && this.get('familyName');
         },
 
-        getPlanMeta: function(title) {
+        getProgress: function(title) {
             return this.collection.get(title);
         }
 

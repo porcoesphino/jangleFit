@@ -7,8 +7,8 @@ jangleFit.Collections = jangleFit.Collections || {};
 
     jangleFit.Collections.PlanCollection = Backbone.Collection.extend({
 
-        getCurrentRung: function(planMeta) {
-            var level = planMeta.getLevel();
+        getCurrentRung: function(progress) {
+            var level = progress.getLevel();
             return this.getLadder().get(level);
         },
 

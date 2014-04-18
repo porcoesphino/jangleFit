@@ -12,15 +12,29 @@ jangleFit.Models = jangleFit.Models || {};
             this.localStorage = new Backbone.LocalStorage(jangleFit.store);
         },
 
-        getLevel: function() {
-            var chain = this.get('levelChain');
-            return chain[chain.length-1].level;
+        getLadder: function() {
+            return this.get('ladder');
         },
 
-        getCurrentRung: function() {
-            var level = this.getLevel();
-            return jangleFit.plans.getLadder().get(level);
+        setLadder: function(ladder) {
+            return this.set('ladder', ladder);
         },
+
+        getLadderModel: function() {
+            return jangleFit.plans.getLadder(this.getLadder());
+        },
+
+        getRung: function() {
+            return this.get('rung');
+        },
+
+        setRung: function(rung) {
+            return this.set('rung', rung);
+        },
+
+        getRungModel: function() {
+            return this.getLadderModel().get(this.getRung());
+        }
 
     });
 

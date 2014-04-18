@@ -112,7 +112,7 @@ jangleFit.Routers = jangleFit.Routers || {};
         today: function(plan) {
             this.updateIfAuth( function() {
                 return new jangleFit.Views.TodayView({
-                    model: jangleFit.user.getPlanMeta(plan)
+                    model: jangleFit.user.getProgress(plan)
                 });
             });
         },
@@ -120,7 +120,7 @@ jangleFit.Routers = jangleFit.Routers || {};
         training: function(plan) {
             this.updateIfAuth( function() {
                 return new jangleFit.Views.TrainingView({
-                    model: jangleFit.user.getPlanMeta(plan)
+                    model: jangleFit.user.getProgress(plan)
                 });
             });
         },
