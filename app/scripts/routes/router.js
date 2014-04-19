@@ -27,7 +27,7 @@ jangleFit.Routers = jangleFit.Routers || {};
             '(/)log(/)' : 'log',
             '(/)about(/)' : 'about',
             '(/)login(/)' : 'login',
-            '(/)chart4(/)' : 'chart4',
+            '(/)reference/:plan/ladder-:ladder(/)' : 'reference',
             '*notFound' : 'unknown'
         },
 
@@ -74,10 +74,12 @@ jangleFit.Routers = jangleFit.Routers || {};
             );
         },
 
-        chart4: function() {
+        reference: function(planId, ladderId) {
+            var plan = jangleFit.plans.get(planId);
+            var ladder = plan.getLadder(ladderId);
             this.goWithMenuUpdate(
                 new jangleFit.Views.LadderView({
-                    collection: new jangleFit.Collections.RungCollection()
+                    model: ladder
                 })
             );
         },

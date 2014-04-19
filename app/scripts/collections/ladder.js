@@ -5,10 +5,10 @@ jangleFit.Collections = jangleFit.Collections || {};
 (function () {
     'use strict';
 
-    jangleFit.Collections.RungCollection = Backbone.Collection.extend({
+    jangleFit.Collections.LadderCollection = Backbone.Collection.extend({
 
         initialize: function () {
-            this.model = jangleFit.Models.Rung;
+            this.model = jangleFit.Models.Ladder;
         },
 
     });

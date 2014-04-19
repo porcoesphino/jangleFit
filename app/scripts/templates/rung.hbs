@@ -1,8 +1,4 @@
   <td>{{ level }}</td>
-  <td>{{ ex0 }}</td>
-  <td>{{ ex1 }}</td>
-  <td>{{ ex2 }}</td>
-  <td>{{ ex3 }}</td>
-  <td>{{ ex4 }}</td>
-  <td>{{ ex5 }}</td>
-  <td>{{ ex6 }}</td>
+  {{#each exercises}}
+  <td>{{ this }}</td>
+  {{/each}}

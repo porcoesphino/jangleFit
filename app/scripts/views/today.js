@@ -21,14 +21,22 @@ jangleFit.Views = jangleFit.Views || {};
             jangleFit.router.navigate('#/training/' + this.model.get('title'));
         },
 
+
         render: function () {
             var rows = [];
-            var current = this.model.getRungModel();
-            if (current) {
-                current = current.toJSON();
-                current.label = 'Current';
-                rows.push(current);
-            }
+            var addIfExists = function(title, row) {
+                if (row) {
+                    var result = row.toJSON();
+                    result.label = title;
+                    rows.push(result);
+                }
+            };
+            var ladder = this.model.getLadder();
+            var currentRung = this.model.getRung();
+            addIfExists('Highest', ladder.getRungHighest());
+            addIfExists('Next', ladder.getRungOffset(currentRung, -1));
+            addIfExists('Current', currentRung);
+
             var json = this.model.toJSON();
             json.rows = rows;
             this.$el.html(this.template(json));

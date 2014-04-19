@@ -1,11 +1,7 @@
 <div class="panel-group">
   <div class="panel panel-success">
     <div class="panel-heading">
-       {{ title }}
-      {{#each levelChain}}
-      - {{this.prefix}} {{this.level}}
-      {{/each}}
-      </p>
+       {{ title }}: {{ ladder }} - {{ rung }}
     </div>
     <div id="panel-content">
       <div class="table-responsive">
@@ -29,13 +25,9 @@
       {{#each rows}}
             <tr>
               <td>{{ this.label }}</td>
-              <td>{{ this.ex0 }}</td>
-              <td>{{ this.ex1 }}</td>
-              <td>{{ this.ex2 }}</td>
-              <td>{{ this.ex3 }}</td>
-              <td>{{ this.ex4 }}</td>
-              <td>{{ this.ex5 }}</td>
-              <td>{{ this.ex6 }}</td>
+              {{#each this.exercises}}
+              <td>{{ this }}</td>
+              {{/each}}
             </tr>
       {{/each}}
 
@@ -45,9 +37,8 @@
     <div class="jumbotron">
       <p class="bg-info">
         Congratulations! You're up to
-      {{#each levelChain}}
-      {{this.prefix}} <span class="badge" style="font-size:inherit;">{{this.level}}</span>
-      {{/each}}
+        <span class="badge" style="font-size:inherit;">{{ ladder }}</span>
+        <span class="badge" style="font-size:inherit;">{{ rung }}</span>
       </p>
     <button id="start-btn" class="btn btn-default">Let's Start!</button>
   </div>

@@ -1,36 +1,40 @@
-/*global _, jangleFit, Backbone*/
+/*global jangleFit, Backbone*/
 
 jangleFit.Models = jangleFit.Models || {};
 
 (function () {
     'use strict';
 
-    jangleFit.Models.Session = Backbone.Model.extend({
-
+    jangleFit.Models.Ladder = Backbone.Model.extend({
 
         initialize: function() {
-            this.localStorage = new Backbone.LocalStorage(jangleFit.storePrefix + '-sessions');
-            this.id = $.now();
-            this.set('timestamp', this.id);
-            this.collection = new jangleFit.Collections.SetCollection();
-        },
-
-        saveAll: function() {
-            _.each(this.collection.models, function(set) {
-                set.save();
+            var ladderKey = 'ladder';
+            this.localStorage = new Backbone.LocalStorage(jangleFit.storePrefix + '-ladder');
+            this.collection = new jangleFit.Collections.RungCollection();
+            var ladder = this.get(ladderKey).map( function(rungList) {
+                return {
+                    level: rungList[0],
+                    exercises: rungList.filter(
+                        function(val, i) {
+                            return i > 0;
+                        }
+                    )
+                };
             });
-            this.save();
+            this.collection.add(ladder);
         },
 
-        addSet: function(set) {
-            var key = 'sets';
-            var list = this.get(key);
-            if (!list) {
-                list = [];
-            }
-            list.push(set.id);
-            this.set(key, list);
-            this.collection.add(set);
+        getRungHighest: function() {
+            return this.collection.first();
+        },
+
+        getRungOffset: function(rungId, offset) {
+            var actualIndex = this.collection.indexOf(this.getRung(rungId));
+            return this.collection.models[actualIndex+offset];
+        },
+
+        getRung: function(rungId) {
+            return this.collection.get(rungId);
         }
 
     });

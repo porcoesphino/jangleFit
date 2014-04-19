@@ -11,11 +11,6 @@ jangleFit.Views = jangleFit.Views || {};
 
         initialize: function () {
             this.render();
-
-            this.listenTo(this.collection, 'add', this.addRung);
-            this.listenTo(this.collection, 'reset', this.addAllRungs);
-
-            this.collection.fetch();
         },
 
         render: function () {
@@ -30,7 +25,7 @@ jangleFit.Views = jangleFit.Views || {};
         },
 
         addRungs: function () {
-            this.collection.each(this.addRung, this);
+            this.model.collection.each(this.addRung, this);
         }
     });
 

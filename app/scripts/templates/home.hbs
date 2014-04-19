@@ -13,9 +13,10 @@
       <td><a href="#/today/{{this.title}}">{{this.title}}</a></td>
       <td><img src="images/sparkline.png" style="width:100%;min-width:100px;height:3ex;padding-right:20px"></td>
       <td>
-      Table <span class="badge">{{this.ladder}}</span>
-      -
-      Level <span class="badge">{{this.rung}}</span>
+      {{#if this.ladder}}
+      <span class="badge">{{this.ladder}}</span> -
+      {{/if}}
+      <span class="badge">{{this.rung}}</span>
       </td>
     </tr>
     {{/each}}

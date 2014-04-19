@@ -28,7 +28,7 @@ jangleFit.Views = jangleFit.Views || {};
 
         // TODO: Horrible hack
         setLevel: function() {
-            var level = jangleFit.user.getProgress('5BX').getRung();
+            var level = jangleFit.user.getProgress('5BX').getRungName();
             if (level) {
                 var option = this.$el.find('option:contains("'+level+'")');
                 if (option.length !== 1) {
@@ -54,7 +54,7 @@ jangleFit.Views = jangleFit.Views || {};
             var data = {};
             data[field.attr('id')] = value;
 //TODO: HACK
-            jangleFit.user.getProgress('5BX').setRung(value);
+            jangleFit.user.getProgress('5BX').setRungName(value);
             jangleFit.user.save();
             this.setLevel();
         },
