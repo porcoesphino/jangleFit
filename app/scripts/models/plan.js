@@ -8,14 +8,31 @@ jangleFit.Models = jangleFit.Models || {};
     jangleFit.Models.Plan = Backbone.Model.extend({
 
         initialize: function() {
-            this.id = this.get('title');
+            var ladders = new jangleFit.Collections.LadderCollection(),
+                planId = this.get('title'),
+                exercisesPlan = this.get('exercises'),
+                rungLabelPlan = this.get('rungLabel');
+            this.id = planId;
             this.localStorage = new Backbone.LocalStorage(jangleFit.storePrefix + '-ladder');
-            var ladders = new jangleFit.Collections.LadderCollection();
-            var laddersKey = 'ladders';
             this.collection = ladders;
-            _.each(this.get(laddersKey), function(ladder, id) {
+            _.each(this.get('ladders'), function(ladder, id) {
+                var exercises = ladder.exercises,
+                    rungLabel = ladder.rungLabel;
+                if (!exercises) {
+                    exercises = exercisesPlan;
+                }
+                if (!rungLabel) {
+                    rungLabel = rungLabelPlan;
+                }
                 ladders.add(new jangleFit.Models.Ladder(
-                    {id: id, ladder: ladder}));
+                    {
+                        id: id,
+                        planId: planId,
+                        rungLabel: rungLabel,
+                        exercises: exercises,
+                        ladder: ladder.ladder
+                    }
+                ));
             });
         },
 

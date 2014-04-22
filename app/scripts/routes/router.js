@@ -27,7 +27,7 @@ jangleFit.Routers = jangleFit.Routers || {};
             '(/)log(/)' : 'log',
             '(/)about(/)' : 'about',
             '(/)login(/)' : 'login',
-            '(/)reference/:plan/ladder-:ladder(/)' : 'reference',
+            '(/)reference/:plan/:ladder(/)' : 'reference',
             '*notFound' : 'unknown'
         },
 
@@ -76,7 +76,13 @@ jangleFit.Routers = jangleFit.Routers || {};
 
         reference: function(planId, ladderId) {
             var plan = jangleFit.plans.get(planId);
-            var ladder = plan.getLadder(ladderId);
+            var ladder;
+            if (plan) {
+                ladder = plan.getLadder(ladderId);
+            }
+            if (!ladder) {
+                this.unknown();
+            }
             this.goWithMenuUpdate(
                 new jangleFit.Views.LadderView({
                     model: ladder

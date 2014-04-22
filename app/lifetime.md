@@ -1,9 +1,13 @@
-jQuery.get('http://localhost/foo.txt', function(data) {
-var myvar = data;
-});
-Lifetime Ladder
+# Hackers
 
-Rung	Bend	Sit up	Leg lift	Push up	Steps	Count
+## Notes
+
+The ``Count'' column in the table makes it easier to keep track of the running and jumping phases of this exercise. The first number is how many complete sets of 75 steps of running and 10 jumping jacks you should perform. The second number gives the number of extra steps you should run after the last full set (don't jump after these final steps).
+
+Be sure to count a step in running only as your left foot touches the floor, not every time either foot touches. The easiest way to keep count is to repeatedly count to 75 as you run, do the ten jumps, then start counting from 1 again for the next running phase. I find that keeping count of the number of complete sets of running and jumping is best done by setting out a number of coins equal to the number of sets you're doing at the current rung and moving a coin from one pile to another after each set is completed.
+
+## Lifetime Ladder
+
 16	14	10	12	9	340	4	40
 17	15	11	14	10	355	4	55
 18	16	12	16	11	375	5	0
@@ -38,26 +42,26 @@ Rung	Bend	Sit up	Leg lift	Push up	Steps	Count
 47	77	66	92	40	575	7	50
 48	80	69	96	41	575	7	50
 
-Bend and bounce
+
+### Rung
+
+
+### Bend and bounce
 
 Stand upright with your legs apart, hands outstretched above your head. Bend forward and touch the floor between your legs, bounce up a few inches, and touch the floor again. Then straighten up and bend backward. Repeat the specified number of times.
 
-Sit up
+### Sit up
 
 Lie on your back on the floor, feet slightly apart, hands at your side. Lift your upper body, bending at the waist, until you're sitting up vertically. Keep your arms at your sides and your feet on the floor--avoid the temptation to ``cheat'' by pulling yourself up with your arms or levering yourself up by raising your legs. Smoothly lower your body back to the floor. Repeat the specified number of times.
 
-Prone lift
+### Prone lift
 
 Lie face down on the floor, legs slightly apart, with the palms of your hands under your thighs. Lift both legs, bending at the hip, at least high enough that your thighs are lifted from your hands. Simultaneously lift your head and shoulders from the floor. Smoothly lower your head, shoulders, and both legs. Repeat the specified number of times.
 
-Push up
+### Push up
 
 Lie face down on the floor with palms just outside your shoulders and arms bent. Keeping your back straight, pivoting on your toes, lift your body until your arms are straight. Then smoothly lower your body back to the floor, touching your chest. Repeat the specified number of times.
 
-Run and jump
+### Run and jump
 
 Run in place at a brisk pace for the specified number of steps, lifting your legs 4 to 6 inches from the floor with each step. Every 75 steps, stop and do 10 ``jumping jacks'': stand with your legs together, arms at your side. Jump up in the air, extending your legs to the side and your arms upward as high as you can (ideally touching your fingers together above your head, but at least above your shoulders). Then jump up again, bringing your legs back together and your arms back to your side.
-
-The ``Count'' column in the table makes it easier to keep track of the running and jumping phases of this exercise. The first number is how many complete sets of 75 steps of running and 10 jumping jacks you should perform. The second number gives the number of extra steps you should run after the last full set (don't jump after these final steps).
-
-Be sure to count a step in running only as your left foot touches the floor, not every time either foot touches. The easiest way to keep count is to repeatedly count to 75 as you run, do the ten jumps, then start counting from 1 again for the next running phase. I find that keeping count of the number of complete sets of running and jumping is best done by setting out a number of coins equal to the number of sets you're doing at the current rung and moving a coin from one pile to another after each set is completed.

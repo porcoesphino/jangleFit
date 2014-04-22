@@ -13,12 +13,12 @@ jangleFit.Models = jangleFit.Models || {};
             plans: [
                 {
                     title: '5BX',
-                    ladder: '4',
+                    ladder: 'Chart 4',
                     rung: 'D-'
                 }, {
                     title: 'Hackers',
-                    ladder: '',
-                    rung: '100'
+                    ladder: 'Lifetime Ladder',
+                    rung: '16'
                 }
             ]
         },

@@ -8,10 +8,9 @@ jangleFit.Models = jangleFit.Models || {};
     jangleFit.Models.Ladder = Backbone.Model.extend({
 
         initialize: function() {
-            var ladderKey = 'ladder';
             this.localStorage = new Backbone.LocalStorage(jangleFit.storePrefix + '-ladder');
             this.collection = new jangleFit.Collections.RungCollection();
-            var ladder = this.get(ladderKey).map( function(rungList) {
+            var ladder = this.get('ladder').map( function(rungList) {
                 return {
                     level: rungList[0],
                     exercises: rungList.filter(

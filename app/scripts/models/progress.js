@@ -25,7 +25,10 @@ jangleFit.Models = jangleFit.Models || {};
         },
 
         getLadder: function() {
-            return this.getPlan().getLadder(this.getLadderName());
+            var plan = this.getPlan();
+            if (plan) {
+                return plan.getLadder(this.getLadderName());
+            }
         },
 
         getRungName: function() {
@@ -37,7 +40,10 @@ jangleFit.Models = jangleFit.Models || {};
         },
 
         getRung: function() {
-            return this.getLadder().getRung(this.getRungName());
+            var ladder = this.getLadder();
+            if (ladder) {
+                return this.getLadder().getRung(this.getRungName());
+            }
         }
 
     });

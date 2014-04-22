@@ -14,7 +14,7 @@ jangleFit.Views = jangleFit.Views || {};
         },
 
         initialize: function () {
-            this.rung = this.model.getCurrentRung();
+            this.rung = this.model.getRung();
             this.render();
             this.$reps = this.$el.find('#reps');
 
@@ -118,9 +118,10 @@ jangleFit.Views = jangleFit.Views || {};
 
         renderPanel: function() {
             this.renderButton();
-            var exLabel = 'ex' + this.exNo;
             this.$el.find('#activity').text(this.currentActivity());
-            this.$reps.val(this.rung.get(exLabel));
+            if (this.rung) {
+                this.$reps.val(this.rung.get('exercises')[this.exNo]);
+            }
             this.count = this.currentInterval();
             this.updateCounter();
         },

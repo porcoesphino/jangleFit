@@ -33,8 +33,10 @@ jangleFit.Views = jangleFit.Views || {};
             };
             var ladder = this.model.getLadder();
             var currentRung = this.model.getRung();
-            addIfExists('Highest', ladder.getRungHighest());
-            addIfExists('Next', ladder.getRungOffset(currentRung, -1));
+            if (ladder) {
+                addIfExists('Highest', ladder.getRungHighest());
+                addIfExists('Next', ladder.getRungOffset(currentRung, -1));
+            }
             addIfExists('Current', currentRung);
 
             var json = this.model.toJSON();
