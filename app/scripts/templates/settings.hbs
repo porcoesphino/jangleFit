@@ -33,9 +33,9 @@
   <div class="panel-body">
 
     <div class="form-group">
-      <label class="control-label col-xs-4" for="level">Level</label>
+      <label class="control-label col-xs-4" for="rung-{{ this.id }}">Level</label>
       <div class="col-xs-3">
-        <select class="form-control" id="level-{{ this.id }}">
+        <select class="form-control" id="rung-{{ this.id }}">
           {{#each rungs}}
           <option {{#if this.selected}}selected="selected"{{/if}}>{{ this.id }}</option>
           {{/each}}

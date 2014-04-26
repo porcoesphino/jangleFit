@@ -56,7 +56,7 @@ jangleFit.Views = jangleFit.Views || {};
             var field = $(e.currentTarget),
             value = $('option:selected', field).val(),
             id = field.attr('id'),
-            planId = id.substring('level-'.length),
+            planId = id.substring('rung-'.length),
             data = {};
             data[id] = value;
             jangleFit.user.getProgress(planId).setRungName(value);

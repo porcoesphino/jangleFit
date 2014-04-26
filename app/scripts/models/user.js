@@ -55,7 +55,7 @@ jangleFit.Models = jangleFit.Models || {};
         initialize: function() {
             this.localStorage = new Backbone.LocalStorage('janglefit');
             this.fetch();
-            //
+
             this.on('change', this.localSave, this);
         },
 
@@ -70,6 +70,14 @@ jangleFit.Models = jangleFit.Models || {};
 
         getProgress: function(title) {
             return this.collection.get(title);
+        },
+
+        getHistory: function() {
+            if (!this.sessions){
+                this.sessions = new jangleFit.Collections.SessionCollection();
+                this.sessions.fetchAll();
+            }
+            return this.sessions;
         }
 
     });

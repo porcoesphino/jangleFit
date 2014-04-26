@@ -9,7 +9,6 @@ jangleFit.Models = jangleFit.Models || {};
 
         initialize: function() {
             this.localStorage = new Backbone.LocalStorage(jangleFit.storePrefix + '-sessions');
-            this.id = $.now();
             this.set('timestamp', this.id);
             this.collection = new jangleFit.Collections.SetCollection();
         },

@@ -18,7 +18,9 @@ jangleFit.Views = jangleFit.Views || {};
             this.render();
             this.$reps = this.$el.find('#reps');
 
-            this.session = new jangleFit.Models.Session();
+            this.session = new jangleFit.Models.Session({
+                id: $.now()
+            });
             this.progress = new jangleFit.Views.SessionView({
                 el: this.$el.find('#session')[0],
                 model: this.session
@@ -76,6 +78,7 @@ jangleFit.Views = jangleFit.Views || {};
 
         startSet: function() {
             this.setCurrent = new jangleFit.Models.Set({
+                id: $.now(),
                 activity: this.currentActivity()
             });
             this.session.addSet(this.setCurrent);

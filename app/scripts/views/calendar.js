@@ -107,7 +107,6 @@ jangleFit.Views = jangleFit.Views || {};
                     dateCounter.setDate(dateCounter.getDate() - 1);
                 }
             });
-            console.log(json);
             this.$el.html(this.template(json));
             return this;
         },
