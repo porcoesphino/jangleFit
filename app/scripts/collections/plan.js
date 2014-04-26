@@ -46,7 +46,7 @@ jangleFit.Collections = jangleFit.Collections || {};
             jQuery.get('lifetime.md', function(data) {
                 var lines = data.split('\n'),
                     notesCallback = function(line) {
-                        if (line || line == '') {
+                        if (line || line === '') {
                             plan.notes += line + '\n';
                         } else {
                             plan.notes = plan.notes.trim();
@@ -55,7 +55,7 @@ jangleFit.Collections = jangleFit.Collections || {};
                     ladderCallback = function(tableName, line) {
                         var table = plan.ladders[tableName],
                             col;
-                        if (line || line == '') {
+                        if (line || line === '') {
                             if (line.substring(0,4) === '### ') {
                                 col = line.substring(4);
                                 if (table.rungLabel) {
@@ -69,7 +69,6 @@ jangleFit.Collections = jangleFit.Collections || {};
                             }
                         } else {
                             table.ladder.reverse();
-                            console.log("Hello");
                         }
                     },
                     plan = {
