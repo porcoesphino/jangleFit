@@ -19,9 +19,14 @@ jangleFit.Views = jangleFit.Views || {};
             jangleFit.user.sessions.each(
                 function(session) {
                     console.log(session);
+                    var d = new Date(session.get('timestamp')),
+                    timestring = d.toISOString();
                     sessions.push({
                         id: session.id,
-                        timestamp: new Date(session.get('timestamp')),
+                        timestamp: timestring,
+                        plan: session.get('plan'),
+                        ladder: session.get('ladder'),
+                        rung: session.get('rung'),
                         sets: session.collection.map(
                             function(item) {
                                 var json = item.toJSON();

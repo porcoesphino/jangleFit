@@ -19,7 +19,10 @@ jangleFit.Views = jangleFit.Views || {};
             this.$reps = this.$el.find('#reps');
 
             this.session = new jangleFit.Models.Session({
-                id: $.now()
+                id: $.now(),
+                plan: this.model.get('title'),
+                ladder: this.model.get('ladder'),
+                rung: this.model.get('rung')
             });
             this.progress = new jangleFit.Views.SessionView({
                 el: this.$el.find('#session')[0],
