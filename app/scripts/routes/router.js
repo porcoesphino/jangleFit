@@ -18,9 +18,9 @@ jangleFit.Routers = jangleFit.Routers || {};
 
         routes: {
             // TODO: clean these up
-            '': 'initial',
-            'jangleFit': 'initial',
-            'janglefit': 'initial',
+            '(/)': 'initial',
+            '(/)jangleFit': 'initial',
+            '(/)janglefit': 'initial',
             '(/)today/:plan(/)' : 'today',
             '(/)training/:plan(/)' : 'training',
             '(/)settings(/)' : 'settings',
