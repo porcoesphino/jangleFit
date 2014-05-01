@@ -77,7 +77,10 @@ jangleFit.Models = jangleFit.Models || {};
         },
 
         getColorClass: function() {
-            return this.getColors()[this.getColorName()].class;
+            var c = this.getColors()[this.getColorName()];
+            if (c) {
+                return c.class;
+            }
         },
 
         setColor: function(color) {
