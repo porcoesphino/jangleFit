@@ -40,9 +40,20 @@
           <option {{#if this.selected}}selected="selected"{{/if}}>{{ this.id }}</option>
           {{/each}}
         </select>
-
       </div>
     </div>
+
+    <div class="form-group">
+      <label class="control-label col-xs-4" for="color-{{ this.id }}">Color</label>
+      <div class="col-xs-3">
+        <select class="form-control" id="color-{{ this.id }}">
+          {{#each colors}}
+          <option class="{{ this.class }}" {{#if this.selected}}selected="selected"{{/if}}>{{ @key }}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+
   </div>
 </div>
 {{/each}}

@@ -39,7 +39,7 @@ jangleFit.Views = jangleFit.Views || {};
             }
             addIfExists('Current', currentRung);
 
-            var json = this.model.toJSON();
+            var json = this.model.toViewJSON();
             json.rows = rows;
             this.$el.html(this.template(json));
             return this;

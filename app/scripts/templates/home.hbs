@@ -14,9 +14,9 @@
       <td><img src="images/sparkline.png" style="width:100%;min-width:100px;height:3ex;padding-right:20px"></td>
       <td>
       {{#if this.ladder}}
-      <span class="badge">{{this.ladder}}</span> -
+      <span class="badge {{ this.colorClass }}">{{this.ladder}}</span> -
       {{/if}}
-      <span class="badge">{{this.rung}}</span>
+      <span class="badge {{ this.colorClass }}">{{this.rung}}</span>
       </td>
     </tr>
     {{/each}}

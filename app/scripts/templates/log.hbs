@@ -6,7 +6,8 @@
     {{#each sessions}}
     <div class="panel-heading">
       <a data-toggle="collapse" data-parent="#table-accordian" href="#{{ this.id }}">
-        {{ this.timestamp }} | {{ this.plan }}: {{ this.ladder }} - {{ this.rung }}
+        <span>{{ this.timestamp }}</span>
+        <span class="pull-right">{{ this.plan }}: {{ this.ladder }} - {{ this.rung }}</span>
       </a>
     </div>
     <div id="{{ this.id }}" class="panel-collapse collapse">

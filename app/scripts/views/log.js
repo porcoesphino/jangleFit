@@ -15,12 +15,23 @@ jangleFit.Views = jangleFit.Views || {};
         },
 
         render: function () {
-            var sessions = [];
+            var sessions = [],
+            insertZero = function(num) {
+                if (num < 10) {
+                    return '0' + num;
+                }
+                return '' + num;
+            };
             jangleFit.user.sessions.each(
                 function(session) {
-                    console.log(session);
                     var d = new Date(session.get('timestamp')),
-                    timestring = d.toISOString();
+                    timestring = d.getFullYear() + '-' +
+                    insertZero(d.getMonth()) + '-' +
+                    insertZero(d.getDate()) + ' ' +
+                    insertZero(d.getHours()) + ':' +
+                    insertZero(d.getMinutes()) + ':' +
+                    insertZero(d.getSeconds());
+
                     sessions.push({
                         id: session.id,
                         timestamp: timestring,

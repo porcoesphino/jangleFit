@@ -1,4 +1,4 @@
-/*global jangleFit, Backbone*/
+/*global _, jangleFit, Backbone*/
 
 jangleFit.Views = jangleFit.Views || {};
 
@@ -62,13 +62,27 @@ jangleFit.Views = jangleFit.Views || {};
                 dateString += temp;
                 return dateString;
             },
-            getSessionList = function() {
-                return [{
-                    id: 1,
-                    color: 'event-special',
-                    title: '',
-                    longTitle:''
-                }];
+            getSessionList = function(date) {
+                var h = jangleFit.user.getHistory(),
+                endDate = new Date(date),
+                result = [],
+                sessionList;
+                endDate.setDate(endDate.getDate() + 1);
+                endDate.setMilliseconds(-1);
+
+                sessionList = h.filter(function(item) {
+                    var timestamp = item.get('timestamp');
+                    return date.getTime() < timestamp && timestamp < endDate.getTime();
+                });
+                _.forEach(sessionList, function(session) {
+                    result.push({
+                        id: session.id,
+                        colorClass: jangleFit.user.getProgress(session.get('plan')).getColorClass(),
+                        title: '',
+                        longTitle:''
+                    });
+                });
+                return result;
             },
             json = {
                 dayLabels: [],
@@ -94,7 +108,7 @@ jangleFit.Views = jangleFit.Views || {};
                     day = {
                         date: dateCounter.getDate(),
                         dateString: getDateString(dateCounter),
-                        sessions: getSessionList()
+                        sessions: getSessionList(dateCounter)
                     };
                     if (week.weekLabel) {
                         day.weekLabel = week.weekLabel;

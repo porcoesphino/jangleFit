@@ -16,7 +16,7 @@ jangleFit.Views = jangleFit.Views || {};
         },
 
         render: function () {
-            var json = this.model.toJSON();
+            var json = this.model.toViewJSON();
             this.$el.html(this.template(json));
             return this;
         },

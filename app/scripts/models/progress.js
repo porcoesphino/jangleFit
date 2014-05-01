@@ -44,6 +44,51 @@ jangleFit.Models = jangleFit.Models || {};
             if (ladder) {
                 return this.getLadder().getRung(this.getRungName());
             }
+        },
+
+        getColors: function() {
+            return {
+                Red: {
+                    class: 'event-important'
+                },
+                Black: {
+                    class: 'event-inverse'
+                },
+                Grey: {
+                    class: ''
+                },
+                Purple: {
+                    class: 'event-special'
+                },
+                Yellow: {
+                    class: 'event-warning'
+                },
+                Blue: {
+                    class: 'event-info'
+                },
+                Green: {
+                    class: 'event-success'
+                }
+            };
+        },
+
+        getColorName: function() {
+            return this.get('color');
+        },
+
+        getColorClass: function() {
+            return this.getColors()[this.getColorName()].class;
+        },
+
+        setColor: function(color) {
+            var result = this.set('color', color);
+            return result;
+        },
+
+        toViewJSON: function() {
+            var json = this.toJSON();
+            json.colorClass = this.getColorClass();
+            return json;
         }
 
     });

@@ -39,18 +39,26 @@ jangleFit.Models = jangleFit.Models || {};
             return response;
         },
 
-        plansToJSON: function() {
+        getPlans: function() {
             if(!this.collection) {
                 this.addPlans(this.get('plans'));
             }
-            return this.collection.models.map( function(item) {return item.toJSON();});
         },
 
         toJSON: function() {
             var result = Backbone.Model.prototype.toJSON.call(this);
-            result.plans = this.plansToJSON();
+            this.getPlans();
+            result.plans = this.collection.models.map( function(item) {return item.toJSON();});
             return result;
         },
+
+        toViewJSON: function() {
+            var result = Backbone.Model.prototype.toJSON.call(this);
+            this.getPlans();
+            result.plans = this.collection.models.map( function(item) {return item.toViewJSON();});
+            return result;
+        },
+
 
         initialize: function() {
             this.localStorage = new Backbone.LocalStorage('janglefit');

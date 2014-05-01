@@ -21,15 +21,16 @@ jangleFit.Views = jangleFit.Views || {};
             'change select': 'selectChanged'
         },
 
-        initialize: function () {
+        initialize: function() {
             this.listenTo(jangleFit.user , 'change', this.render);
             this.render();
         },
 
-        render: function () {
+        render: function() {
             var json = jangleFit.user.toJSON();
             json.plans.forEach(function(plan) {
                 var progress = jangleFit.user.getProgress(plan.id),
+                c = progress.get('color'),
                 ladder;
                 if (!progress) {
                     return;
@@ -46,7 +47,11 @@ jangleFit.Views = jangleFit.Views || {};
                         }
                         return result;
                     }
-                );
+                    );
+                plan.colors = progress.getColors();
+                if (c) {
+                    plan.colors[c].selected = 'selected';
+                }
             });
             this.$el.html(this.template(json));
             return this;
@@ -56,13 +61,23 @@ jangleFit.Views = jangleFit.Views || {};
             var field = $(e.currentTarget),
             value = $('option:selected', field).val(),
             id = field.attr('id'),
-            planId = id.substring('rung-'.length),
+            index = id.indexOf('-'),
+            role = id.substring(0,index),
+            planId = id.substring(index+1),
             data = {};
             data[id] = value;
-            jangleFit.user.getProgress(planId).setRungName(value);
-            jangleFit.user.save();
+            switch(role) {
+            case 'rung':
+                jangleFit.user.getProgress(planId).setRungName(value);
+                jangleFit.user.save();
+                break;
+            case 'color':
+                jangleFit.user.getProgress(planId).setColor(value);
+                jangleFit.user.save();
+                break;
+            }
         },
- 
+
         fieldChanged: function(e){
             var field = $(e.currentTarget),
             formGroup = field.parent().parent(),

@@ -19,17 +19,7 @@
 				data-cal-start="{{ this.startTimestamp }}"
 				data-cal-end=" this.endTimestamp }}">
 				{{#each this.sessions}}
-				<!-- 
-				Event colours: data-event-class
-				 - Red: 'event-important'
-				 - Black: 'event-inverse'
-				 - Grey: ''
-				 - Purple: 'event-special'
-				 - Yellow: 'event-warning'
-				 - Blue: 'event-info'
-				 - Green: 'event-success'
-				-->
-					<div data-event-id="{{ this.id }}" data-event-class="{{ this.color }}" class="pull-left event {{this.color}} " data-toggle="tooltip" title="{{ this.title}}" data-original-title="{{ this.longTitle}}"></div>
+					<div data-event-id="{{ this.id }}" data-event-class="{{ this.colorClass }}" class="pull-left event {{this.colorClass}} " data-toggle="tooltip" title="{{ this.title}}" data-original-title="{{ this.longTitle}}"></div>
 					{{/each}}
 				</div>
 				{{/if}}
