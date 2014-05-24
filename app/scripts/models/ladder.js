@@ -1,4 +1,4 @@
-/*global jangleFit, Backbone*/
+/*global _, jangleFit, Backbone*/
 
 jangleFit.Models = jangleFit.Models || {};
 
@@ -32,6 +32,10 @@ jangleFit.Models = jangleFit.Models || {};
             rungIndex = this.collection.indexOf(rung);
             offset = typeof offset !== 'undefined' ? offset : 0;
             return this.collection.models[rungIndex+offset].clone();
+        },
+
+        getExercises: function() {
+            return _.clone(this.get('exercises'));
         }
 
     });

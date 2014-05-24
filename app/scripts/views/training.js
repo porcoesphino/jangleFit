@@ -14,7 +14,8 @@ jangleFit.Views = jangleFit.Views || {};
         },
 
         initialize: function () {
-            this.rung = this.model.getRung();
+            this.rung = this.model.getRung(undefined, 0, true);
+            this.exercises = this.model.getExercises(true);
             this.render();
             this.$reps = this.$el.find('#reps');
 
@@ -118,8 +119,7 @@ jangleFit.Views = jangleFit.Views || {};
         },
 
         currentActivity: function() {
-            var actions = ['Stretching', 'Sit-up', 'Extension', 'Push-up', 'Run'];
-            return actions[this.exNo];
+            return this.exercises[this.exNo];
         },
 
         renderPanel: function() {

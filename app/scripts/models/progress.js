@@ -72,6 +72,21 @@ jangleFit.Models = jangleFit.Models || {};
             return rung;
         },
 
+        getExercises: function(doRemove) {
+            var exList = this.getLadder().getExercises(),
+            i, iL, selected;
+            if (doRemove) {
+                iL = exList.length;
+                for (i=0; i<iL; i++) {
+                    if (Array.isArray(exList[i])) {
+                        selected = this.get('select-' + i);
+                        exList[i] = exList[i][selected+1];
+                    }
+                }
+            }
+            return exList;
+        },
+
         getRungName: function() {
             return this.get('rung');
         },
