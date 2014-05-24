@@ -9,15 +9,17 @@
           <thead>
             <tr>
               <th></th>
-              <th>Stretching</th>
-              <th>Sit-up</th>
-              <th>Back extension</th>
-              <th>Push-up</th>
-<!-- TODO: Move the title into the th and adjust css -->
-<!-- TODO: Touch screen support?? -->
-              <th><abbr title="Stationary Run">Option 1</abbr></th>
-              <th><abbr title="Outside Run">Option 2</abbr></th>
-              <th><abbr title="Outside Walk">Option 3</abbr></th>
+              {{#each exerciseLabels}}
+              {{#if this.isCombo}}
+              <th>{{ this.label }}<select id="select-{{@index}}" class="pull-right exercise-selector">
+              {{#each options}}
+              <option {{#if this.selected}}selected="selected"{{/if}}>{{ this.name }}</option>
+              {{/each}}
+              </select></th>
+              {{else}}
+              <th>{{ this.label }}</th>
+              {{/if}}
+              {{/each}}
             </tr>
           </thead>
           <tbody>

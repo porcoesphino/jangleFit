@@ -10,7 +10,7 @@ jangleFit.Models = jangleFit.Models || {};
         id: 'user',
 
         defaults: {
-            plans: [
+            progress: [
                 {
                     title: '5BX',
                     ladder: 'Chart 4',
@@ -23,42 +23,34 @@ jangleFit.Models = jangleFit.Models || {};
             ]
         },
 
-        addPlans: function(plans) {
-            this.collection = new jangleFit.Collections.ProgressCollection();
-            this.collection.add(plans);
-            this.unset('plans', {silent: true});
+        addProgress: function(progress) {
+            // TODO: This should handle updates from the server
+            // Although, that isn't a realistic usecase
+            if (!this.collection) {
+                this.collection = new jangleFit.Collections.ProgressCollection();
+                this.collection.add(progress);
+            }
         },
 
         parse: function(response) {
-            var planList = this.get('plans');
-            if (response.plans) {
-                planList = response.plans;
-            }
-            this.addPlans(planList);
-            delete response.plans;
+            var progressList = response.progress || this.get('progress');
+            this.unset('progress', {silent: true});
+            delete response.progress;
+            this.addProgress(progressList);
             return response;
-        },
-
-        getPlans: function() {
-            if(!this.collection) {
-                this.addPlans(this.get('plans'));
-            }
         },
 
         toJSON: function() {
             var result = Backbone.Model.prototype.toJSON.call(this);
-            this.getPlans();
-            result.plans = this.collection.models.map( function(item) {return item.toJSON();});
+            result.progress = this.collection.models.map( function(item) {return item.toJSON();});
             return result;
         },
 
         toViewJSON: function() {
             var result = Backbone.Model.prototype.toJSON.call(this);
-            this.getPlans();
-            result.plans = this.collection.models.map( function(item) {return item.toViewJSON();});
+            result.progress = this.collection.models.map( function(item) {return item.toViewJSON();});
             return result;
         },
-
 
         initialize: function() {
             this.localStorage = new Backbone.LocalStorage('janglefit');
@@ -68,6 +60,8 @@ jangleFit.Models = jangleFit.Models || {};
         },
 
         // TODO: remove this hideousness
+        // For some reason calling save directly as an
+        // event handler doesn't work
         localSave: function() {
             this.save();
         },
