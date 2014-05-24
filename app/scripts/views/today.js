@@ -29,51 +29,7 @@ jangleFit.Views = jangleFit.Views || {};
             this.render(); // TODO: Cleanup this render
         },
 
-        getRemovedIndices: function(ladder) {
-            var result = [],
-            exercises = ladder.get('exercises'),
-            totalI = 0,
-            outerI, thisInnerI, thisInnerLength, innerMatch;
-            for (outerI=0; outerI<exercises.length; outerI++) {
-                if (Array.isArray(exercises[outerI])) {
-                    innerMatch = this.model.get('select-'+outerI) + 1;
-                    thisInnerLength = exercises[outerI].length;
-                    for (thisInnerI=1; thisInnerI<thisInnerLength; thisInnerI++) {
-                        if (thisInnerI !== innerMatch) {
-                            result.push(totalI+thisInnerI-1);
-                        }
-                    }
-                    totalI+=thisInnerLength-1;
-                } else {
-                    totalI++;
-                }
-            }
-            return result;
-        },
-
-
-        removeColumns: function(rows, toRemoveIndices) {
-            rows.forEach(function(row) {
-                var i=0, val=toRemoveIndices[i];
-                row.exercises = row.exercises.filter(
-                    function(item, index){
-                        var keep = index !== val;
-                        if (!keep) {
-                            i++;
-                            if (i < toRemoveIndices.length) {
-                                val = toRemoveIndices[i];
-                            } else {
-                                val = undefined;
-                            }
-                        }
-                        return keep;
-                    }
-                );
-            });
-            return rows;
-        },
-
-        getRows: function(progress, ladder) {
+        getRows: function(progress) {
             var rows = [],
             addIfExists = function(title, row) {
                 if (row) {
@@ -82,21 +38,18 @@ jangleFit.Views = jangleFit.Views || {};
                     rows.push(result);
                 }
             },
-            currentRung = progress.getRung();
-            if (ladder) {
-                addIfExists('Highest', ladder.getRungHighest());
-                addIfExists('Next', ladder.getRung(currentRung, -1));
-            }
+            currentRung = progress.getRung(undefined, 0, true);
+            addIfExists('Highest', progress.getRungHighest(true));
+            addIfExists('Next', progress.getRung(currentRung.get('level'), -1, true));
             addIfExists('Current', currentRung);
-            return this.removeColumns(rows,
-                this.getRemovedIndices(ladder));
+            return rows;
         },
 
         render: function () {
             var json = this.model.toViewJSON(),
             progress = this.model,
             ladder = progress.getLadder();
-            json.rows = this.getRows(progress, ladder);
+            json.rows = this.getRows(progress);
             json.exerciseLabels = _.map(ladder.get('exercises'), function(ex, index) {
                 if (Array.isArray(ex)) {
                     var id = 'select-'+index,

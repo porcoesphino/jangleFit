@@ -24,14 +24,14 @@ jangleFit.Models = jangleFit.Models || {};
         },
 
         getRungHighest: function() {
-            return this.collection.first();
+            return this.collection.first().clone();
         },
 
         getRung: function(rungId, offset) {
             var rung = this.collection.get(rungId),
             rungIndex = this.collection.indexOf(rung);
             offset = typeof offset !== 'undefined' ? offset : 0;
-            return this.collection.models[rungIndex+offset];
+            return this.collection.models[rungIndex+offset].clone();
         }
 
     });
