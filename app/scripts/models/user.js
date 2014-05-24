@@ -56,6 +56,9 @@ jangleFit.Models = jangleFit.Models || {};
             this.localStorage = new Backbone.LocalStorage('janglefit');
             this.fetch();
 
+            // if this is a new instance...
+            this.addProgress(this.get('progress'));
+
             this.on('change', this.localSave, this);
         },
 
