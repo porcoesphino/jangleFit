@@ -28,7 +28,7 @@ jangleFit.Views = jangleFit.Views || {};
 
         render: function() {
             var json = jangleFit.user.toJSON();
-            json.plans.forEach(function(plan) {
+            json.progress.forEach(function(plan) {
                 var progress = jangleFit.user.getProgress(plan.id),
                 c = progress.get('color'),
                 ladder;

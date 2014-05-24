@@ -27,13 +27,11 @@ jangleFit.Models = jangleFit.Models || {};
             return this.collection.first();
         },
 
-        getRungOffset: function(rungId, offset) {
-            var actualIndex = this.collection.indexOf(this.getRung(rungId));
-            return this.collection.models[actualIndex+offset];
-        },
-
-        getRung: function(rungId) {
-            return this.collection.get(rungId);
+        getRung: function(rungId, offset) {
+            var rung = this.collection.get(rungId),
+            rungIndex = this.collection.indexOf(rung);
+            offset = typeof offset !== 'undefined' ? offset : 0;
+            return this.collection.models[rungIndex+offset];
         }
 
     });

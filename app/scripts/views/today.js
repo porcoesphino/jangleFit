@@ -85,7 +85,7 @@ jangleFit.Views = jangleFit.Views || {};
             currentRung = progress.getRung();
             if (ladder) {
                 addIfExists('Highest', ladder.getRungHighest());
-                addIfExists('Next', ladder.getRungOffset(currentRung, -1));
+                addIfExists('Next', ladder.getRung(currentRung, -1));
             }
             addIfExists('Current', currentRung);
             return this.removeColumns(rows,

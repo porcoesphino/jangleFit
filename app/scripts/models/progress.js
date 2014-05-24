@@ -39,10 +39,16 @@ jangleFit.Models = jangleFit.Models || {};
             return this.set('rung', rung);
         },
 
-        getRung: function() {
-            var ladder = this.getLadder();
+        getRung: function(rungId, offset, doRemove) {
+            var ladder = this.getLadder(),
+            rung;
             if (ladder) {
-                return this.getLadder().getRung(this.getRungName());
+                rungId = typeof rungId !== 'undefined' ? rungId : this.getRungName();
+                rung = ladder.getRung(rungId, offset);
+                if (doRemove) {
+                    // TODO: remove code
+                }
+                return rung;
             }
         },
 
